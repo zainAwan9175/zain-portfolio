@@ -7,22 +7,20 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
-import { cva, type VariantProps } from "class-variance-authority"
-import { cn } from "@/lib/utils"
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
+
 const badgeVariants = cva(
   "inline-flex items-center rounded-md border px-2.5 py-1.5 text-ms font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
-        default:
-          "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
-        secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive:
-          "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
+        default: "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive: "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
         outline: "text-foreground",
       },
     },
@@ -30,9 +28,14 @@ const badgeVariants = cva(
       variant: "default",
     },
   }
-)
+);
 
-export default function Page(className, variant) {
+interface PageProps {
+  className?: string;
+  variant?: VariantProps<typeof badgeVariants>["variant"];
+}
+
+export default function Page({ className, variant }: PageProps) {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
@@ -51,7 +54,7 @@ export default function Page(className, variant) {
                 text={DATA.description}
               />
             </div>
-    
+
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
@@ -71,8 +74,7 @@ export default function Page(className, variant) {
           </Markdown>
           <div className="mt-4">
             <a href="/resume.pdf" download>
-              <button className={cn(badgeVariants({ variant }), className)}
-              >
+              <button className={cn(badgeVariants({ variant }), className)}>
                 My Resume
               </button>
             </a>
@@ -141,8 +143,7 @@ export default function Page(className, variant) {
           ))}
         </div>
       </section>
-     
-    
+
       <section id="projects">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
@@ -190,13 +191,18 @@ export default function Page(className, variant) {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Compettitions
+                  Competitions
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Competitive Programming Journey
+                  Competitive Programming Journey
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Explore my journey through the world of competitive programming, where I’ve tackled complex challenges, sharpened my coding skills, and consistently pushed the boundaries of problem-solving. This section highlights the contests I’ve participated in and the milestones I’ve achieved along the way.
+                  Explore my journey through the world of competitive
+                  programming, where I’ve tackled complex challenges, sharpened
+                  my coding skills, and consistently pushed the boundaries of
+                  problem-solving. This section highlights the contests I’ve
+                  participated in and the milestones I’ve achieved along the
+                  way.
                 </p>
               </div>
             </div>
@@ -214,6 +220,7 @@ export default function Page(className, variant) {
                     location={project.location}
                     dates={project.dates}
                     image={project.image}
+                    tags={project.technologies}
                     links={project.links}
                   />
                 </BlurFade>
@@ -223,28 +230,22 @@ export default function Page(className, variant) {
         </div>
       </section>
       <section id="contact">
-        <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 16}>
-            <div className="space-y-3">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                Contact
-              </div>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                Get in Touch
-              </h2>
-              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me a dm{" "}
-                <Link
-                  href={DATA.contact.social.X.url}
-                  className="text-blue-500 hover:underline"
-                >
-                  with a direct question on twitter
-                </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
-              </p>
+        <div className="mx-auto w-full max-w-2xl space-y-8">
+          <div className="gap-2 flex justify-between">
+            <div className="flex-col flex flex-1 space-y-1.5">
+              <BlurFadeText
+                delay={BLUR_FADE_DELAY}
+                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                yOffset={8}
+                text={`Let's Connect!`}
+              />
+              <BlurFadeText
+                className="max-w-[600px] md:text-xl"
+                delay={BLUR_FADE_DELAY}
+                text={`I'm open to exciting opportunities and collaborations. Reach out to me via Twitter!`}
+              />
             </div>
-          </BlurFade>
+          </div>
         </div>
       </section>
     </main>

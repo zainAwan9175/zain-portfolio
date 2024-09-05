@@ -117,30 +117,31 @@ export default function Page() {
       </section>
 
       <section id="work">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
-          </BlurFade>
-          {DATA.work.map((work, id) => (
-            <BlurFade
-              key={work.company}
-              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
-            >
-              <ResumeCard
-                key={work.company}
-                logoUrl={work.logoUrl}
-                altText={work.company}
-                title={work.company}
-                subtitle={work.title}
-                href={work.href}
-                badges={work.badges}
-                period={`${work.start} - ${work.end ?? "Present"}`}
-                description={work.description}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </section>
+  <div className="flex min-h-0 flex-col gap-y-3">
+    <BlurFade delay={BLUR_FADE_DELAY * 5}>
+      <h2 className="text-xl font-bold">Work Experience</h2>
+    </BlurFade>
+    {DATA.work.map((work, id) => (
+      <BlurFade
+        key={work.company}
+        delay={BLUR_FADE_DELAY * 6 + id * 0.05}
+      >
+        <ResumeCard
+          key={work.company}
+          logoUrl={work.logoUrl}
+          altText={work.company}
+          title={work.company}
+          subtitle={work.title}
+          href={work.href}
+          badges={work.badges}
+          period={`${work.start} - ${work.end ?? "Present"}`}
+          description={work.description.join(" ")} // Converts array to string
+        />
+      </BlurFade>
+    ))}
+  </div>
+</section>
+
 
       <section id="projects">
         <div className="space-y-12 w-full py-12">
@@ -182,50 +183,51 @@ export default function Page() {
           </div>
         </div>
       </section>
-
       <section id="hackathons">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Competitions
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Competitive Programming Journey
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Explore my journey through the world of competitive
-                  programming, where I’ve tackled complex challenges, sharpened
-                  my coding skills, and consistently pushed the boundaries of
-                  problem-solving. This section highlights the contests I’ve
-                  participated in and the milestones I’ve achieved along the
-                  way.
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.hackathons.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    location={project.location}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
-          </BlurFade>
+  <div className="space-y-12 w-full py-12">
+    <BlurFade delay={BLUR_FADE_DELAY * 13}>
+      <div className="flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="space-y-2">
+          <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+            Competitions
+          </div>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+            Competitive Programming Journey
+          </h2>
+          <p className="text-muted-foreground text-xl">
+            Explore my journey through the world of competitive programming, where I’ve tackled complex challenges, sharpened my coding skills, and consistently pushed the boundaries of problem-solving. This section highlights the contests I’ve participated in and the milestones I’ve achieved along the way.
+          </p>
         </div>
-      </section>
+      </div>
+    </BlurFade>
+
+    {/* Check if hackathons data is available before mapping */}
+    {DATA.hackathons && DATA.hackathons.length > 0 ? (
+      <BlurFade delay={BLUR_FADE_DELAY * 14}>
+        <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+          {DATA.hackathons.map((project, id) => (
+            <BlurFade
+              key={`${project.title}-${project.dates}`} // Ensure a unique key
+              delay={BLUR_FADE_DELAY * 15 + id * 0.05}
+            >
+              <HackathonCard
+                title={project.title}
+                description={project.description}
+                location={project.location}
+                dates={project.dates}
+                image={project.image}
+                links={project.links}
+              />
+            </BlurFade>
+          ))}
+        </ul>
+      </BlurFade>
+    ) : (
+      <p>No hackathons available at the moment.</p> // Display fallback content if data is empty
+    )}
+  </div>
+</section>
+
 
       <section id="contact">
         <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">

@@ -2,11 +2,11 @@ import { Slot } from "@radix-ui/react-slot";
 import * as React from "react";
 
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
   asChild?: boolean;
   variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link";
   size?: "default" | "sm" | "lg" | "icon";
-  href?: string;  // Add this to enable href for the download
+  href?: string; // Optional href for anchor tag
 }
 
 const buttonVariantClasses = {
@@ -25,18 +25,24 @@ const buttonSizeClasses = {
   icon: "h-9 w-9 rounded-full",
 };
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className = "", variant = "default", size = "default", asChild = false, href, ...props }, ref) => {
-    const Comp = asChild ? Slot : "a";  // Change the component to 'a' for the download link
+const Button = React.forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>(
+  (
+    { className = "", variant = "default", size = "default", asChild = false, href, ...props },
+    ref
+  ) => {
+    const Comp = asChild ? Slot : href ? "a" : "button"; // Use 'a' when href is present, otherwise 'button'
     const variantClass = buttonVariantClasses[variant];
     const sizeClass = buttonSizeClasses[size];
 
     return (
       <Comp
-        href={href} // Use href for the download link
-        download="resume.pdf" // This makes it download the file
+        href={href} // Use href for anchor tag
+        download={href ? "resume.pdf" : undefined} // Set download if href is present
         className={`inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 ${variantClass} ${sizeClass} ${className}`}
-        ref={ref}
+        // ref={ref as React.Ref<HTMLAnchorElement> | React.Ref<HTMLButtonElement>} // Type assertion for ref
         {...props}
       >
         Download Resume

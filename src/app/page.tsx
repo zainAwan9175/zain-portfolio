@@ -10,6 +10,7 @@ import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import Markdown from "react-markdown";
+import { Button } from "@/components/ui/resume_button";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -18,9 +19,12 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
-        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive: "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
+        default:
+          "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
+        secondary:
+          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive:
+          "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
         outline: "text-foreground",
       },
     },
@@ -30,12 +34,7 @@ const badgeVariants = cva(
   }
 );
 
-interface PageProps {
-  className?: string;
-  variant?: VariantProps<typeof badgeVariants>["variant"];
-}
-
-export default function Page({ className, variant }: PageProps) {
+export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] space-y-10">
       <section id="hero">
@@ -64,6 +63,7 @@ export default function Page({ className, variant }: PageProps) {
           </div>
         </div>
       </section>
+
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">About</h2>
@@ -72,15 +72,11 @@ export default function Page({ className, variant }: PageProps) {
           <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
             {DATA.summary}
           </Markdown>
-          <div className="mt-4">
-            <a href="/resume.pdf" download>
-              <button className={cn(badgeVariants({ variant }), className)}>
-                My Resume
-              </button>
-            </a>
-          </div>
+          <Button className="mt-4" href="/resume.pdf" variant="default" size="default" />
         </BlurFade>
       </section>
+      {/* <Button className="mt-4" href="/path-to-your-resume.pdf" variant="default" size="default" /> */}
+
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
@@ -95,6 +91,7 @@ export default function Page({ className, variant }: PageProps) {
           </div>
         </div>
       </section>
+
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
@@ -118,6 +115,7 @@ export default function Page({ className, variant }: PageProps) {
           ))}
         </div>
       </section>
+
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
@@ -156,9 +154,8 @@ export default function Page({ className, variant }: PageProps) {
                   Check out my latest work
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
+                  I&apos;ve worked on a variety of projects, from simple websites
+                  to complex web applications. Here are a few of my favorites.
                 </p>
               </div>
             </div>
@@ -185,6 +182,7 @@ export default function Page({ className, variant }: PageProps) {
           </div>
         </div>
       </section>
+
       <section id="hackathons">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 13}>
@@ -220,7 +218,6 @@ export default function Page({ className, variant }: PageProps) {
                     location={project.location}
                     dates={project.dates}
                     image={project.image}
-                    tags={project.technologies}
                     links={project.links}
                   />
                 </BlurFade>
@@ -229,23 +226,30 @@ export default function Page({ className, variant }: PageProps) {
           </BlurFade>
         </div>
       </section>
+
       <section id="contact">
-        <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-1.5">
-              <BlurFadeText
-                delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                yOffset={8}
-                text={`Let's Connect!`}
-              />
-              <BlurFadeText
-                className="max-w-[600px] md:text-xl"
-                delay={BLUR_FADE_DELAY}
-                text={`I'm open to exciting opportunities and collaborations. Reach out to me via Twitter!`}
-              />
+        <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
+          <BlurFade delay={BLUR_FADE_DELAY * 16}>
+            <div className="space-y-3">
+              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                Contact
+              </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Get in Touch
+              </h2>
+              <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                Want to chat? Just shoot me a dm{" "}
+                <Link
+                  href={DATA.contact.social.X.url}
+                  className="text-blue-500 hover:underline"
+                >
+                  with a direct question on twitter
+                </Link>{" "}
+                and I&apos;ll respond whenever I can. I will ignore all
+                soliciting.
+              </p>
             </div>
-          </div>
+          </BlurFade>
         </div>
       </section>
     </main>

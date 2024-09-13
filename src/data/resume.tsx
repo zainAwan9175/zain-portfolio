@@ -176,7 +176,7 @@ export const DATA = {
   projects: [
     {
       title: "ZainEstate",
-      href: "https://chatcollect.com",
+      href: "https://estate-liard.vercel.app/",
       dates: "Agust 2024",
       active: true,
       description:

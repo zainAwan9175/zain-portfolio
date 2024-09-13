@@ -198,12 +198,12 @@ export const DATA = {
       links: [
         {
           type: "Website",
-          href: "https://chatcollect.com",
+          href: "https://estate-liard.vercel.app/",
           icon: <Icons.globe className="size-3" />,
         },
         {
           type: "Source",
-          href: "https://github.com/zainAwan9175/25-shop-cart",
+          href: "https://github.com/zainAwan9175/estate-",
           icon: <Icons.github className="size-3" />,
         },
       ],

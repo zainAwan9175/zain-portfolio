@@ -72,7 +72,7 @@ export default function Page() {
           <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
             {DATA.summary}
           </Markdown>
-          <Button className="mt-4" href="/a zain ul abeidin  resume.pdf" variant="default" size="default" />
+          <Button className="mt-4" href="/a-zain-ul-abeidin-resume.pdf" variant="default" size="default" />
         </BlurFade>
       </section>
       {/* <Button className="mt-4" href="/path-to-your-resume.pdf" variant="default" size="default" /> */}

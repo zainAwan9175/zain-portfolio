@@ -247,6 +247,17 @@ export const DATA = {
   ],
   hackathons: [
     {
+      title: "DEVATHON",
+      href: "https://headstarter.co/",
+      dates: "SEP 7th 2024",
+      location: "DEVSiNC, Lahore",
+      description:
+        "",
+      image:
+        "/devathon.png",
+    
+    },
+    {
       title: "Forman Ignite",
       href: "https://headstarter.co/",
       dates: "June 25th - 28th, 2024",

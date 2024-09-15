@@ -262,7 +262,7 @@ export const DATA = {
       href: "https://headstarter.co/",
       dates: "June 25th - 28th, 2024",
       location: "FCCU, Lahore",
-      descric:\Users\Zain\Downloads\a zain ul abeidin  resume.pdfption:
+      description:
         "Ended up in top 15 with my team.",
       image:
         "/ignite.jpeg",

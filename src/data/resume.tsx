@@ -175,6 +175,37 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "UE Readers Club",
+      href: "https://ue-readers-club.vercel.app/",
+      dates: "october 2024",
+      active: true,
+      description:
+        "Developed a book discussion platform with real-time chat functionality, enabling users to engage in interactive discussions about literature. Built with Next.js for SEO optimization and efficient server-side rendering. Integrated Firebase for secure and scalable image storage, ensuring seamless media uploads. Utilized MongoDB, Express, and Node.js (MERN stack) to create a robust and scalable backend, handling user data and chat functionality efficiently.",
+      technologies: [
+        "Next.js",
+        "TailwindCSS",
+        "Fire base",
+        "Node js",
+        "Express",
+        "mongo db",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://ue-readers-club.vercel.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/zainAwan9175/ue-book-club",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video:
+        "/3.mp4",
+    },
+    {
       title: "ZainEstate",
       href: "https://estate-liard.vercel.app/",
       dates: "Agust 2024",

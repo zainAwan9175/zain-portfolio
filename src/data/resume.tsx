@@ -9,9 +9,9 @@ export const DATA = {
   location: "Lahore Pakistan",
   locationLink: "https://www.google.com/maps/place/sanfrancisco",
   description:
-    "Software Engineer | Competitve Programmer | MERN | NextJs | C/C++",
+    "Software Engineer | Tech. Lead @GDGoC-UE | Trainer @Devweekends |Ambassador @ Mock Talent | LeetCode 150+ | FULL Stack Developer | UE 27' Grad | C/C++ | Javascript | Typescript | Next js | Nest js | 🥉 UE Code Quest",
   summary:
-    "I am a software developer focused on full-stack web development, particularly the MERN stack. I'm currently pursuing a Bachelor's in Computer Science at the University of Education. Through my fellowship at Headstarter AI and various projects, I've gained experience in building user-friendly and scalable applications. I'm passionate about learning new technologies and solving real-world problems through code.",
+    "I am a software engineer specializing in full-stack web development. I'm currently pursuing a Bachelor's in Computer Science at the University of Education. Through my fellowship at Headstarter AI, freelance projects, and various personal and team-based projects, I've gained experience in building user-friendly and scalable applications. As a freelancer, I have worked on multiple projects, delivering high-quality solutions to clients. I'm passionate about learning new technologies and solving real-world problems through code.",
   avatarUrl: "/me.png",
 
   
@@ -35,6 +35,10 @@ export const DATA = {
     "Netlify",
     
     "C/C++",
+    "Redis",
+    "Cloudinary",
+    "Clerk",
+
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -175,6 +179,38 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "Mama Marketplace",
+      href: "https://mama-marketplace.ch/",
+      dates: "January 2025",
+      active: true,
+      description:
+        "Mama Marketplace (Live in Germany) is a modern e-commerce platform built with Next.js for a fast, SEO-friendly frontend, styled using Tailwind CSS for a sleek UI. The Node.js & Express.js backend, powered by MongoDB, ensures scalability and efficiency, while Redis enhances performance with caching. Secure transactions are enabled via PayRex payment gateway, meeting client requirements. Cloudinary is integrated for optimized image uploads, ensuring a smooth user experience. This project showcases my expertise in full-stack development, delivering a high-performance, scalable, and user-friendly marketplace solution. 🚀",
+      technologies: [
+        "Next.js",
+   
+      
+        "TailwindCSS",
+        "Cloudinary",
+        "Redis",
+        "Payrex",
+       
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://mama-marketplace.ch/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/zainAwan9175/Mama-MarketPlace",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "/2.mp4",
+    },
+    {
       title: "UE Readers Club",
       href: "https://ue-readers-club.vercel.app/",
       dates: "october 2024",
@@ -206,22 +242,20 @@ export const DATA = {
         "/3.mp4",
     },
     {
-      title: "ZainEstate",
-      href: "https://estate-liard.vercel.app/",
+      title: "GDGoC UE",
+      href: "https://our-site-client.vercel.app/",
       dates: "Agust 2024",
       active: true,
       description:
-        "Built a real estate web application using the MERN stack (MongoDB, Express.js, React, Node.js) Implemented Hyper UI and Swiper.js for a responsive and visually appealing user interface. Integrated Firebase for secure image storage and seamless account creation and login functionality. Developed key features including property listings, user authentication, and dynamic image sliders",
+        "Google Developer Group On Campus (GDGoC UE) – University of Education, Lahore Worked as a full-stack developer to build a community platform for students. Developed the frontend using Next.js for a fast, SEO-friendly, and dynamic user experience. Built the backend with Node.js and Express for scalable API handling. Integrated Clerk for secure authentication and Firebase for seamless image uploads.",
       technologies: [
-        "React.js",
+        "Next.js",
         "TailwindCSS",
         "Fire base",
-        "Redux",
-        "",
+       
      
-        "Stripe",
-        "MUI",
-        "Hyper UI",
+        
+       "shadcn ui",
         "Node js",
         "Express",
         "mongo db",
@@ -229,51 +263,20 @@ export const DATA = {
       links: [
         {
           type: "Website",
-          href: "https://estate-liard.vercel.app/",
+          href: "https://our-site-client.vercel.app/",
           icon: <Icons.globe className="size-3" />,
         },
         {
           type: "Source",
-          href: "https://github.com/zainAwan9175/estate-",
+          href: "https://github.com/zainAwan9175/GDGoC-UE",
           icon: <Icons.github className="size-3" />,
         },
       ],
       image: "",
       video:
-        "/1.webm",
+        "/1.mp4",
     },
-    {
-      title: "Shop Cart",
-      href: "https://25shop-cart.netlify.app",
-      dates: "April 2024 ",
-      active: true,
-      description:
-        "Developed a comprehensive e-commerce frontend application using HTML, CSS, Tailwind CSS, JavaScript, and React. Integrated MUI for a responsive and modern UI/UX design.  Implemented dynamic product sliders with Swiper.js for an interactive user experience. Deployed the project on Netlify for seamless access and performance optimization.",
-      technologies: [
-        "React.js",
-   
-      
-        "TailwindCSS",
-        "Swiper js",
-        "MUI",
-        "fontawesome.",
-       
-      ],
-      links: [
-        {
-          type: "Website",
-          href: "https://25shop-cart.netlify.app",
-          icon: <Icons.globe className="size-3" />,
-        },
-        {
-          type: "Source",
-          href: "https://github.com/zainAwan9175/25-shop-cart",
-          icon: <Icons.github className="size-3" />,
-        },
-      ],
-      image: "",
-      video: "/2.webm",
-    },
+  
   
   ],
   hackathons: [

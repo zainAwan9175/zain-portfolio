@@ -9,35 +9,49 @@ export const DATA = {
   location: "Lahore Pakistan",
   locationLink: "https://www.google.com/maps/place/sanfrancisco",
   description:
-    "Software Engineer | Tech. Lead @GDGoC-UE | Trainer @Devweekends |Ambassador @ Mock Talent | LeetCode 150+ | FULL Stack Developer | UE 27' Grad | C/C++ | Javascript | Typescript | Next js | Nest js | 🥉 UE Code Quest",
+    "Software Engineer | Tech. Lead @GDGoC-UE | Trainer @Devweekends | LeetCode 150+ | MERN Stack Developer | C/C++ | Javascript | Typescript | Next js | React Native | AWS | DevOps |🥉 UE Code Quest",
   summary:
-    "I am a software engineer specializing in full-stack web development. I'm currently pursuing a Bachelor's in Computer Science at the University of Education. Through my fellowship at Headstarter AI, freelance projects, and various personal and team-based projects, I've gained experience in building user-friendly and scalable applications. As a freelancer, I have worked on multiple projects, delivering high-quality solutions to clients. I'm passionate about learning new technologies and solving real-world problems through code.",
+    "I’m a passionate Software Engineer and Full-Stack Developer with expertise in MERN Stack, React Native, Next.js, TypeScript, AWS, and DevOps tools. I specialize in building scalable, responsive, and production-grade applications that solve real-world problems.As a Tech Lead at GDGoC-UE and Trainer at DevWeekends, I’ve led numerous technical sessions, workshops, and mentoring programs aimed at helping students and early-career developers grow in the tech industry. I'm committed to giving back to the community by sharing knowledge, fostering growth, and empowering others to succeed.",
   avatarUrl: "/me.png",
 
   
   
   skills: [
-    "Html",
-    "Css",
-    "Bootstrap",
-    "Tailwind Css",
-    "MUI",
-    "Swiper js",
-    "Hyper UI",
-    "JavaScript",
-   
-    "React",
-    "Express",
-    "Node.js",
-    "MongoDb",
-    "Redux",
-    "Github",
-    "Netlify",
-    
-    "C/C++",
-    "Redis",
-    "Cloudinary",
-    "Clerk",
+   // Frontend
+  "HTML",
+  "CSS",
+  "Bootstrap",
+  "Tailwind CSS",
+  "MUI",
+  "Swiper JS",
+  "Hyper UI",
+  "JavaScript",
+  "React",
+  "React Native",
+  "Redux",
+
+  // Backend
+  "Node.js",
+  "Express",
+  "MongoDB",
+  "SQL",
+  "Redis",
+  "Cloudinary",
+  "Clerk",
+
+  // DevOps & Deployment
+  "GitHub",
+  "Netlify",
+  "Docker",
+  "Amazon EC2",
+  "Amazon ECS",
+  "Amazon ECR",
+  "Jenkins",
+  "NGINX",
+  "Kubernetes",
+
+  // Programming Languages
+  "C/C++"
 
   ],
   navbar: [
@@ -178,6 +192,38 @@ export const DATA = {
 
   ],
   projects: [
+     {
+      title: "Multivendor Ecommerce",
+      href: "https://multivendor-client.vercel.app/",
+      dates: "JUNE 2025 ",
+      active: true,
+      description:
+        "Developed a full-featured Multi-Vendor E-commerce web application using the MERN stack (MongoDB, Express.js, React, Node.js), enabling multiple vendors to register, list products, manage orders, and chat with customers in real time using Socket.io. Implemented secure authentication with JWT and Clerk, complete order tracking, and payment integration with Stripe and PayPal. Designed a fully responsive UI using Tailwind CSS, MUI, and Swiper.js, with state managed via Redux Toolkit. Supported image uploads via Multer & Cloudinary, account activation with NodeMailer, and dynamic filtering for product discovery. The project is fully deployed on Vercel, with a parallel copy deployed to AWS EC2 using Docker and Jenkins to set up a production-grade CI/CD pipeline.",
+      technologies: [
+        "React",
+          "Node js",
+        "Express",
+        "mongo db",
+        "Redux",
+        "Stripe",
+        "paypal"
+       
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://multivendor-client.vercel.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source",
+          href: "https://github.com/zainAwan9175/Multi-Vendor-eCommerce-MERN-App",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "/4.mp4.webm",
+    },
     {
       title: "Mama Marketplace",
       href: "https://mama-marketplace.ch/",

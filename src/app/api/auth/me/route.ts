@@ -4,6 +4,8 @@ import { cookies } from "next/headers"
 import { UserModel } from "@/models/User"
 import { connectDB } from "@/lib/db"
 
+export const dynamic = "force-dynamic"
+
 export async function GET(request: NextRequest) {
   await connectDB()
   try {

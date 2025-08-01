@@ -8,3 +8,7 @@ body {
 .no-scroll {
   overflow: hidden;
 }
+
+.hero-name-text span {
+  vertical-align: -0.15em; /* Adjust this value as needed for precise alignment */
+}

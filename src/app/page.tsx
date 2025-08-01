@@ -83,10 +83,9 @@ export default function Page() {
             <div className="flex-col flex flex-1 space-y-4">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
-                className="text-4xl font-bold tracking-tight sm:text-6xl xl:text-7xl"
+                className="text-4xl font-bold tracking-tight sm:text-6xl xl:text-7xl hero-name-text"
                 yOffset={8}
-                text={`Hi, I'm ${portfolio.name.split(" ")[0]} `}
-                children={<span style={{ verticalAlign: "middle" }}>👋</span>}
+                text={`Hi, I'm ${portfolio.name.split(" ")[0]} 👋`}
               />
               <BlurFadeText
                 className="max-w-[600px] text-lg md:text-xl text-muted-foreground leading-relaxed"

@@ -88,9 +88,11 @@
   
   /* Specific fix for waving hand emoji */
   .wave-emoji {
-    vertical-align: text-bottom;
-    position: relative;
-    top: -0.1em;
+    vertical-align: baseline;
+    display: inline-block;
+    line-height: 1;
+    font-size: 0.9em;
+    transform: translateY(-0.1em);
   }
   
   pre {

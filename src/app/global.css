@@ -10,5 +10,5 @@ body {
 }
 
 .hero-name-text span {
-  vertical-align: -0.15em; /* Adjust this value as needed for precise alignment */
+  vertical-align: middle; /* Adjust this value as needed for precise alignment */
 }

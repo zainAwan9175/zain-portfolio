@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
       // Convert to plain object before sending
       return NextResponse.json({
         success: true,
-        data: updatedPortfolio?.toObject(),
+        data: updatedPortfolio,
         message: "Portfolio updated successfully",
       })
     } else {
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       // Convert to plain object before sending
       return NextResponse.json({
         success: true,
-        data: savedPortfolio.toObject(),
+        data: savedPortfolio,
         message: "Portfolio created successfully",
       })
     }
@@ -48,7 +48,55 @@ export async function GET() {
     const portfolio = await DataModel.findOne()
 
     if (!portfolio) {
-      return NextResponse.json({ success: false, message: "No portfolio found" }, { status: 404 })
+      // If no data in database, return sample data from resume.tsx
+      const { DATA } = await import("@/data/resume")
+      
+      // Transform the data to match the expected format
+      const transformedData = {
+        ...DATA,
+        avatarUrl: {
+          public_id: "sample",
+          url: DATA.avatarUrl
+        },
+        contact: {
+          ...DATA.contact,
+          social: Object.values(DATA.contact.social).map(social => ({
+            ...social,
+            icon: {
+              public_id: "sample",
+              url: typeof social.icon === 'string' ? social.icon : 'sample-icon'
+            }
+          }))
+        },
+        work: DATA.work.map(work => ({
+          ...work,
+          logoUrl: {
+            public_id: "sample",
+            url: work.logoUrl
+          }
+        })),
+        education: DATA.education.map(edu => ({
+          ...edu,
+          logoUrl: {
+            public_id: "sample",
+            url: edu.logoUrl
+          }
+        })),
+        projects: DATA.projects.map(project => ({
+          ...project,
+          video: {
+            public_id: "sample",
+            url: project.video || "",
+            duration: 0,
+            width: 1920,
+            height: 1080,
+            format: "mp4",
+            bytes: 0
+          }
+        }))
+      }
+      
+      return NextResponse.json({ success: true, data: transformedData })
     }
 
     // Convert to plain object before sending

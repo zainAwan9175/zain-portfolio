@@ -13,7 +13,7 @@ export const dataReducer = createReducer(initialState, (builder) => {
       state.loading = true;
       state.error = null;
     })
-    .addCase("LoadUserSuccess", (state, action: any) => {
+    .addCase("LoadDataSuccess", (state, action: any) => {
       state.loading = false;
       state.DATA = action.payload;
     })

@@ -79,20 +79,11 @@
     @apply !text-lg md:!text-xl;
   }
   
-  /* Fix emoji positioning */
-  .emoji {
-    vertical-align: baseline;
-    display: inline-block;
-    line-height: 1;
-  }
-  
-  /* Specific fix for waving hand emoji */
+  /* Fix for waving hand emoji position */
   .wave-emoji {
-    vertical-align: baseline;
-    display: inline-block;
-    line-height: 1;
-    font-size: 0.9em;
-    transform: translateY(-0.1em);
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
   }
   
   pre {

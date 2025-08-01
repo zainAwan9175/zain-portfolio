@@ -1,6 +1,8 @@
+export const dynamic = "force-dynamic"
+
 import { type NextRequest, NextResponse } from "next/server"
 import { DataModel } from "@/models/DataModel"
-import { connectDB} from "@/lib/db"
+import { connectDB } from "@/lib/db"
 
 export async function POST(request: NextRequest) {
   try {
@@ -17,12 +19,22 @@ export async function POST(request: NextRequest) {
       const updatedPortfolio = await DataModel.findByIdAndUpdate(existingPortfolio._id, portfolioData, {
         new: true,
       })
-      return NextResponse.json({ success: true, data: updatedPortfolio, message: "Portfolio updated successfully" })
+      // Convert to plain object before sending
+      return NextResponse.json({
+        success: true,
+        data: updatedPortfolio?.toObject(),
+        message: "Portfolio updated successfully",
+      })
     } else {
       // Create new portfolio
       const newPortfolio = new DataModel(portfolioData)
       const savedPortfolio = await newPortfolio.save()
-      return NextResponse.json({ success: true, data: savedPortfolio, message: "Portfolio created successfully" })
+      // Convert to plain object before sending
+      return NextResponse.json({
+        success: true,
+        data: savedPortfolio.toObject(),
+        message: "Portfolio created successfully",
+      })
     }
   } catch (error: any) {
     console.error("Portfolio save error:", error)
@@ -39,7 +51,8 @@ export async function GET() {
       return NextResponse.json({ success: false, message: "No portfolio found" }, { status: 404 })
     }
 
-    return NextResponse.json({ success: true, data: portfolio })
+    // Convert to plain object before sending
+    return NextResponse.json({ success: true, data: portfolio.toObject() })
   } catch (error: any) {
     console.error("Portfolio fetch error:", error)
     return NextResponse.json({ success: false, message: error.message }, { status: 500 })

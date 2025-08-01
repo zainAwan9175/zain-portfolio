@@ -51,7 +51,7 @@ export default function Page() {
   }, [dispatch])
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-[100%]">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center space-y-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-foreground"></div>
           <p className="text-lg font-medium text-muted-foreground">Loading portfolio...</p>
@@ -61,7 +61,7 @@ export default function Page() {
   }
   if (!DATA) {
     return (
-      <div className="flex items-center justify-center min-h-screen max-h-screen">
+      <div className="flex items-center justify-center min-h-screen">
         <div className="text-center space-y-4 p-8 rounded-2xl border border-destructive/20 bg-destructive/5">
           <div className="text-2xl font-bold text-destructive">⚠️ Error</div>
           <p className="text-muted-foreground">Failed to load portfolio data.</p>
@@ -85,7 +85,8 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY}
                 className="text-4xl font-bold tracking-tight sm:text-6xl xl:text-7xl"
                 yOffset={8}
-                text={`Hi, I'm ${portfolio.name.split(" ")[0]} 👋`}
+                text={`Hi, I'm ${portfolio.name.split(" ")[0]} `}
+                children={<span style={{ verticalAlign: "middle" }}>👋</span>}
               />
               <BlurFadeText
                 className="max-w-[600px] text-lg md:text-xl text-muted-foreground leading-relaxed"
@@ -305,10 +306,10 @@ export default function Page() {
                 <p className="text-muted-foreground text-lg leading-relaxed">
                   Want to chat? Just shoot me a dm{" "}
                   <Link
-                    href="https://www.linkedin.com/in/im-zain/"
+                    href={xSocialLink}
                     className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-colors duration-200"
                   >
-                    with a direct question on LinkedIn
+                    with a direct question on twitter
                   </Link>{" "}
                   and I'll respond whenever I can. I will ignore all soliciting.
                 </p>

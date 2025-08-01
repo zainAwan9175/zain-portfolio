@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
+import Localization from "@/components/Localization";
+import { ReduxProvider } from "@/redux/provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -13,7 +15,6 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(DATA.url),
   title: {
     default: DATA.name,
     template: `%s | ${DATA.name}`,
@@ -22,7 +23,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${DATA.name}`,
     description: DATA.description,
-    url: DATA.url,
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
@@ -61,12 +61,17 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
-          <TooltipProvider delayDuration={0}>
-            {children}
-            <Navbar />
-          </TooltipProvider>
-        </ThemeProvider>
+        {/* ✅ Wrap with ReduxProvider */}
+        <ReduxProvider>
+          <ThemeProvider attribute="class" defaultTheme="light">
+            <Localization>
+              <TooltipProvider delayDuration={0}>
+                {children}
+                <Navbar />
+              </TooltipProvider>
+            </Localization>
+          </ThemeProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

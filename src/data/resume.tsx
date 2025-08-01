@@ -1,8 +1,7 @@
 import { Icons } from "@/components/icons";
 import { HomeIcon, NotebookIcon } from "lucide-react";
 import { start } from "repl";
-import { useEffect } from "react";
-import { useState } from "react";
+
 
 
 

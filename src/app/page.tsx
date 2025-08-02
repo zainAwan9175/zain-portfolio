@@ -305,10 +305,10 @@ export default function Page() {
                 <p className="text-muted-foreground text-lg leading-relaxed">
                   Want to chat? Just shoot me a dm{" "}
                   <Link
-                    href={xSocialLink}
+                    href="https://www.linkedin.com/in/im-zain/"
                     className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-2 transition-colors duration-200"
                   >
-                    with a direct question on twitter
+                    with a direct question on LinkedIn
                   </Link>{" "}
                   and I'll respond whenever I can. I will ignore all soliciting.
                 </p>

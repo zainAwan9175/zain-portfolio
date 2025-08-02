@@ -1,7 +1,6 @@
 "use client"
 
 import { Badge } from "@/components/ui/badge"
-
 import { notFound } from "next/navigation"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
@@ -20,7 +19,7 @@ interface ProjectCaseStudyPageProps {
 }
 
 export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPageProps) {
-  const dispatch:any = useDispatch()
+  const dispatch: any = useDispatch()
   const { DATA, loading, error } = useSelector((state: any) => state.PortfolioData)
 
   useEffect(() => {
@@ -29,7 +28,7 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
     } else {
       document.body.classList.remove("no-scroll")
     }
-    // Clean up the class when the component unmounts or loading state changes
+
     return () => {
       document.body.classList.remove("no-scroll")
     }
@@ -73,7 +72,6 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
   const { caseStudy } = project
 
-  // Function to get YouTube embed URL
   const getYouTubeEmbedUrl = (url: string) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
     const match = url.match(regExp)
@@ -83,7 +81,12 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
     return null
   }
 
-  const embedUrl = caseStudy.youtubeVideoUrl ? getYouTubeEmbedUrl(caseStudy.youtubeVideoUrl) : null
+  const isYouTubeUrl = (url: string) => {
+    return /youtu\.?be/.test(url)
+  }
+
+  const embedUrl = caseStudy.youtubeVideoUrl || null
+  const youtubeEmbedUrl = embedUrl && isYouTubeUrl(embedUrl) ? getYouTubeEmbedUrl(embedUrl) : null
 
   return (
     <main className="container mx-auto py-12 px-4 max-w-4xl space-y-12">
@@ -123,14 +126,22 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
         <section className="space-y-6">
           <h2 className="text-3xl font-bold text-center">Live Demo</h2>
           <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
-            <iframe
-              src={embedUrl}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute top-0 left-0 w-full h-full"
-            ></iframe>
+            {youtubeEmbedUrl ? (
+              <iframe
+                src={youtubeEmbedUrl}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full"
+              ></iframe>
+            ) : (
+              <video
+                src={embedUrl}
+                controls
+                className="absolute top-0 left-0 w-full h-full object-cover"
+              />
+            )}
           </div>
         </section>
       )}

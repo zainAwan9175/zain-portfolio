@@ -40,9 +40,9 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
   if (loading) {
     return (
-      <main className="flex flex-col h-[100%] items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin mb-4" />
-        <p>Loading project data...</p>
+      <main className="flex flex-col min-h-screen items-center justify-center">
+        <span className="inline-flex items-center justify-center w-16 h-16 text-5xl font-bold text-white bg-black rounded-full mb-4">Z</span>
+        <p className="text-base text-muted-foreground">Loading project data...</p>
       </main>
     )
   }
@@ -89,32 +89,43 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
   const youtubeEmbedUrl = embedUrl && isYouTubeUrl(embedUrl) ? getYouTubeEmbedUrl(embedUrl) : null
 
   return (
-    <main className="container mx-auto py-12 px-4 max-w-4xl space-y-12">
-      <Link href="/" className="text-blue-600 hover:underline flex items-center gap-1 mb-8">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-4 h-4"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-        </svg>
-        Back to Portfolio
-      </Link>
+    <main className="relative flex flex-col min-h-[100dvh] overflow-hidden">
+      {/* Animated Background Elements - Same as Home Page */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-foreground/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-foreground/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-foreground/5 rounded-full blur-3xl animate-spin-slow"></div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      </div>
 
-      <section className="space-y-6">
-        <h1 className="text-4xl font-bold text-center">{project.title} - Case Study</h1>
-        <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert text-center">
+      <div className="container mx-auto py-12 px-6 sm:px-8 lg:px-12 max-w-5xl space-y-16">
+        <Link href="/" className="inline-flex items-center gap-2 text-sm font-medium hover:underline">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="w-4 h-4"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+          </svg>
+          Back to Portfolio
+        </Link>
+
+      <section className="space-y-4">
+        <h1 className="text-3xl sm:text-4xl font-bold">{project.title}</h1>
+        <p className="text-base text-muted-foreground leading-relaxed max-w-3xl">
           {project.description}
-        </Markdown>
-        <div className="flex justify-center gap-4 mt-4">
+        </p>
+        <div className="flex flex-wrap gap-2 pt-2">
           {project.links?.map((link: any, idx: number) => (
-            <Link href={link.link} key={idx} target="_blank" className="group/link">
-              <Badge className="flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-200 group-hover/link:shadow-md">
-                {link.type === "Website" && <Icons.globe className="size-4" />}
-                {link.type === "Source" && <Icons.github className="size-4" />}
+            <Link href={link.link} key={idx} target="_blank">
+              <Badge className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-black text-white hover:bg-black/90">
+                {link.type === "Website" && <Icons.globe className="size-3" />}
+                {link.type === "Source" && <Icons.github className="size-3" />}
                 {link.type}
               </Badge>
             </Link>
@@ -124,8 +135,8 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
       {embedUrl && (
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">Live Demo</h2>
-          <div className="relative aspect-video w-full rounded-lg overflow-hidden shadow-lg">
+          <h2 className="text-2xl font-bold">Live Demo</h2>
+          <div className="relative aspect-video w-full rounded-lg overflow-hidden border">
             {youtubeEmbedUrl ? (
               <iframe
                 src={youtubeEmbedUrl}
@@ -148,21 +159,21 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
       {caseStudy.projectOverview && (
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">Project Overview</h2>
-          <Card className="p-6">
-            <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
+          <h2 className="text-2xl font-bold">Project Overview</h2>
+          <div className="text-base text-muted-foreground leading-relaxed">
+            <Markdown className="prose prose-sm max-w-full text-muted-foreground leading-relaxed dark:prose-invert prose-p:leading-relaxed">
               {caseStudy.projectOverview}
             </Markdown>
-          </Card>
+          </div>
         </section>
       )}
 
       {project.technologies && project.technologies.length > 0 && (
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">Tech Stack</h2>
-          <div className="flex flex-wrap justify-center gap-2">
+          <h2 className="text-2xl font-bold">Tech Stack</h2>
+          <div className="flex flex-wrap gap-2">
             {project.technologies.map((tech: string, idx: number) => (
-              <Badge key={idx} className="px-3 py-1.5 text-sm font-medium">
+              <Badge key={idx} className="px-3 py-1.5 text-xs font-medium bg-black text-white rounded-lg">
                 {tech}
               </Badge>
             ))}
@@ -172,11 +183,12 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
       {caseStudy.keyFeatures && caseStudy.keyFeatures.length > 0 && (
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">Key Features</h2>
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 list-disc list-inside text-muted-foreground">
+          <h2 className="text-2xl font-bold">Key Features</h2>
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 space-y-0">
             {caseStudy.keyFeatures.map((feature: string, idx: number) => (
-              <li key={idx} className="bg-card p-4 rounded-lg shadow-sm">
-                {feature}
+              <li key={idx} className="p-4 text-sm text-muted-foreground flex items-start gap-2">
+                <span className="text-foreground mt-0.5">•</span>
+                <span>{feature}</span>
               </li>
             ))}
           </ul>
@@ -185,14 +197,14 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
       {caseStudy.databaseArchitectureImage?.url && (
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">Database Architecture</h2>
+          <h2 className="text-2xl font-bold">Database Architecture</h2>
           <div className="flex justify-center">
             <Image
               src={caseStudy.databaseArchitectureImage.url || "/placeholder.svg"}
               alt="Database Architecture"
               width={800}
               height={600}
-              className="max-w-full h-auto rounded-lg shadow-lg border border-border"
+              className="max-w-full h-auto rounded-lg border"
             />
           </div>
         </section>
@@ -200,14 +212,14 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
       {caseStudy.systemArchitectureImage?.url && (
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">System Architecture Diagram</h2>
+          <h2 className="text-2xl font-bold">System Architecture Diagram</h2>
           <div className="flex justify-center">
             <Image
               src={caseStudy.systemArchitectureImage.url || "/placeholder.svg"}
               alt="System Architecture Diagram"
               width={800}
               height={600}
-              className="max-w-full h-auto rounded-lg shadow-lg border border-border"
+              className="max-w-full h-auto rounded-lg border"
             />
           </div>
         </section>
@@ -215,15 +227,15 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
       {caseStudy.systemArchitecture && caseStudy.systemArchitecture.length > 0 && (
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">System Architecture Components</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <h2 className="text-2xl font-bold">System Architecture Components</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {caseStudy.systemArchitecture.map((arch: any, idx: number) => (
-              <Card key={idx} className="p-6 space-y-3">
-                <CardTitle className="text-xl font-semibold mb-2">{arch.title}</CardTitle>
-                <Markdown className="text-pretty font-sans text-base text-muted-foreground">
+              <div key={idx} className="space-y-2">
+                <h3 className="text-lg font-semibold">{arch.title}</h3>
+                <Markdown className="text-sm text-muted-foreground leading-relaxed">
                   {arch.description}
                 </Markdown>
-              </Card>
+              </div>
             ))}
           </div>
         </section>
@@ -231,18 +243,24 @@ export default function ProjectCaseStudyPage({ params }: ProjectCaseStudyPagePro
 
       {caseStudy.challengesAndSolutions && caseStudy.challengesAndSolutions.length > 0 && (
         <section className="space-y-6">
-          <h2 className="text-3xl font-bold text-center">Challenges & Solutions</h2>
+          <h2 className="text-2xl font-bold">Challenges & Solutions</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {caseStudy.challengesAndSolutions.map((cs: any, idx: number) => (
-              <Card key={idx} className="p-6 space-y-3">
-                <Markdown className="prose max-w-full text-pretty font-sans text-base text-muted-foreground dark:prose-invert">
-                  {`**Challenge:** ${cs.challenge}\n\n**Solution:** ${cs.solution}`}
-                </Markdown>
-              </Card>
+              <div key={idx} className="space-y-3">
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-foreground">Challenge</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{cs.challenge}</p>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-sm font-semibold text-foreground">Solution</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{cs.solution}</p>
+                </div>
+              </div>
             ))}
           </div>
         </section>
       )}
+      </div>
     </main>
   )
 }

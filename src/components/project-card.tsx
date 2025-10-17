@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 import Link from "next/link"
 import { Icons } from "@/components/icons"
 import { useState } from "react"
-import { BookOpen } from "lucide-react"
+import { BookOpen, ChevronRight } from "lucide-react"
 import Markdown from "react-markdown"
 
 interface Props {
@@ -87,8 +87,12 @@ export function ProjectCard({
             {displayedDescription}
           </Markdown>
           {showReadMore && (
-            <button onClick={() => setIsExpanded(!isExpanded)} className="text-blue-500 hover:underline text-xs mt-1">
+            <button 
+              onClick={() => setIsExpanded(!isExpanded)} 
+              className="text-foreground hover:underline text-xs mt-1 flex items-center gap-1"
+            >
               {isExpanded ? "Show Less" : "Read More"}
+              <ChevronRight className={cn("size-3 transition-transform", isExpanded && "rotate-90")} />
             </button>
           )}
         </div>
@@ -113,7 +117,7 @@ export function ProjectCard({
                 key={idx}
                 target={linkItem.type === "Case Study" ? "_self" : "_blank"}
               >
-                <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
+                <Badge className="flex gap-2 px-2 py-1 text-[10px]">
                   {linkItem.type === "Website" && <Icons.globe className="size-3" />}
                   {linkItem.type === "Source" && <Icons.github className="size-3" />}
                   {linkItem.type === "Case Study" && <BookOpen className="w-3 h-3" />}

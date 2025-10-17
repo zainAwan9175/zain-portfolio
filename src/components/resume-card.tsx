@@ -41,42 +41,53 @@ export const ResumeCard = ({
 
   return (
     <Link href={href || "#"} className="block cursor-pointer" onClick={handleClick}>
-      <Card className="flex">
+      <Card className="flex bg-white border-none shadow-sm rounded-2xl p-6 transition-all duration-300 hover:shadow-md">
         <div className="flex-none">
-          <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
-            <AvatarImage src={logoUrl || "/placeholder.svg"} alt={altText} className="object-contain" />
-            <AvatarFallback>{altText[0]}</AvatarFallback>
+          <Avatar className="size-16 bg-gray-100 rounded-xl border-none">
+            <AvatarImage src={logoUrl || "/placeholder.svg"} alt={altText} className="object-contain p-2" />
+            <AvatarFallback className="text-xl font-semibold rounded-xl text-gray-700 bg-gray-100">
+              {altText[0]}
+            </AvatarFallback>
           </Avatar>
         </div>
 
-        <div className="flex-grow ml-4 items-center flex-col group">
+        <div className="flex-grow ml-5 flex-col group">
           <CardHeader className="p-0">
-            <div className="flex items-center justify-between gap-x-4 text-base">
-              <h3 className="inline-flex items-center justify-center font-semibold leading-none text-base group-hover:text-primary transition-colors duration-200">
-                {title}
-                {badges && (
-                  <span className="inline-flex gap-x-2 ml-3">
-                    {badges.map((badge, index) => (
-                      <Badge
-                        variant="secondary"
-                        className="text-xs font-medium px-2 py-1 rounded-full bg-muted/50 border border-border/30"
-                        key={index}
-                      >
-                        {badge}
-                      </Badge>
-                    ))}
-                  </span>
+            <div className="flex items-start justify-between gap-x-4">
+              <div className="flex-1">
+                <h3 className="font-semibold text-lg leading-tight text-gray-900 group-hover:text-gray-700 transition-colors duration-300 mb-2">
+                  {title}
+                  {badges && (
+                    <span className="inline-flex gap-x-2 ml-3">
+                      {badges.map((badge, index) => (
+                        <span
+                          className="text-sm font-medium px-3 py-1 rounded-full bg-gray-100 text-gray-700"
+                          key={index}
+                        >
+                          {badge}
+                        </span>
+                      ))}
+                    </span>
+                  )}
+                </h3>
+                {subtitle && (
+                  <div className="text-base text-gray-600 leading-relaxed">
+                    {subtitle}
+                  </div>
                 )}
+              </div>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="text-sm font-medium text-gray-500 whitespace-nowrap">
+                  {period}
+                </span>
                 <ChevronRightIcon
                   className={cn(
-                    "size-4 ml-2 translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100",
-                    isExpanded ? "rotate-90" : "rotate-0",
+                    "size-5 text-gray-400 transform transition-all duration-300",
+                    isExpanded ? "rotate-90" : "rotate-0 group-hover:translate-x-0.5",
                   )}
                 />
-              </h3>
-              <div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">{period}</div>
+              </div>
             </div>
-            {subtitle && <div className="font-sans text-sm text-muted-foreground mt-2 leading-relaxed">{subtitle}</div>}
           </CardHeader>
 
           {description && (
@@ -87,12 +98,14 @@ export const ResumeCard = ({
                 height: isExpanded ? "auto" : 0,
               }}
               transition={{
-                duration: 0.7,
+                duration: 0.5,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="overflow-hidden"
+              className="overflow-hidden mt-3"
             >
-              {description}
+              <div className="text-base text-gray-600 leading-relaxed">
+                {description}
+              </div>
             </motion.div>
           )}
         </div>

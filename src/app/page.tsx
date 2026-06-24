@@ -121,6 +121,8 @@ function WorkExperienceList({ work }: { work: any[] }) {
 
 export default function Page() {
   const portfolio: Portfolio = PORTFOLIO
+  const mainProjects = portfolio.projects.filter((p) => !p.practice)
+  const practiceProjects = portfolio.projects.filter((p) => p.practice)
 
   return (
     <main className="relative flex flex-col min-h-[100dvh] overflow-hidden">
@@ -332,7 +334,7 @@ export default function Page() {
             </BlurFade>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {portfolio.projects.map((project, id) => (
+              {mainProjects.map((project, id) => (
                 <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 15 + id * 0.05}>
                   <ProjectCard
                     link={project.link}
@@ -351,6 +353,43 @@ export default function Page() {
             </div>
           </div>
         </section>
+
+        {/* Practice / Learning Projects */}
+        {practiceProjects.length > 0 && (
+          <section id="practice" className="scroll-mt-16 sm:scroll-mt-20">
+            <div className="max-w-6xl mx-auto">
+              <BlurFade delay={BLUR_FADE_DELAY * 15}>
+                <div className="text-center space-y-2 sm:space-y-4 mb-6 sm:mb-8 md:mb-12">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+                    Practice Projects
+                  </h2>
+                  <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
+                    Projects I built to learn new tools and architectures — from courses, tutorials, and hands-on experimentation.
+                  </p>
+                </div>
+              </BlurFade>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                {practiceProjects.map((project, id) => (
+                  <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 16 + id * 0.05}>
+                    <ProjectCard
+                      link={project.link}
+                      key={project.title}
+                      title={project.title}
+                      description={project.description}
+                      dates={project.dates}
+                      tags={project.technologies}
+                      video={project.video?.url}
+                      links={project.links}
+                      projectId={project._id}
+                      hasCaseStudyVideo={!!project.caseStudy?.youtubeVideoUrl}
+                    />
+                  </BlurFade>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Hackathons/Competitions Section - Simplified */}
         <section id="hackathons" className="scroll-mt-16 sm:scroll-mt-20">

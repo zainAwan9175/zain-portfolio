@@ -91,6 +91,8 @@ export interface Project {
   links: ProjectLink[]
   video?: VideoRef
   caseStudy?: CaseStudy
+  /** True for learning / course projects — shown in a separate "Practice Projects" section. */
+  practice?: boolean
 }
 
 export interface Hackathon {
@@ -398,6 +400,7 @@ export const PORTFOLIO: Portfolio = {
       link: "https://github.com/zainAwan9175/ticketing",
       dates: "April 2026 – June 2026",
       active: false,
+      practice: true,
       description:
         "An event-driven microservices architecture in Node.js and TypeScript, with independently deployable services that communicate asynchronously over a NATS streaming server (plus REST APIs for synchronous calls). Each service is containerized with Docker and orchestrated on Kubernetes for horizontal scaling, self-healing, and smooth rolling deployments.",
       technologies: ["Node.js", "TypeScript", "Microservices", "NATS", "Docker", "Kubernetes", "REST APIs"],

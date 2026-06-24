@@ -216,9 +216,9 @@ export const PORTFOLIO: Portfolio = {
     {
       role: "Founder & Open-Source Maintainer",
       company: "VoiceyBill",
-      link: "https://github.com/zainAwan9175",
+      link: "https://www.voiceybill.com/",
       location: "Remote",
-      logoUrl: { url: "" },
+      logoUrl: { url: "/voiceybill.png" },
       start: "April 2026",
       end: "Present",
       description: [
@@ -232,7 +232,7 @@ export const PORTFOLIO: Portfolio = {
       company: "Joplin & Open Source",
       link: "https://github.com/zainAwan9175",
       location: "Remote",
-      logoUrl: { url: "" },
+      logoUrl: { url: "/joplin.jpg" },
       start: "February 2026",
       end: "April 2026",
       description: [
@@ -245,7 +245,7 @@ export const PORTFOLIO: Portfolio = {
       company: "Turing",
       link: "https://www.turing.com/",
       location: "Remote",
-      logoUrl: { url: "" },
+      logoUrl: { url: "/turing.png" },
       start: "October 2025",
       end: "January 2026",
       description: [
@@ -260,7 +260,7 @@ export const PORTFOLIO: Portfolio = {
       company: "New Expensify (Expensify/App)",
       link: "https://github.com/Expensify/App",
       location: "Remote",
-      logoUrl: { url: "" },
+      logoUrl: { url: "/expensify.png" },
       start: "July 2025",
       end: "October 2025",
       description: [

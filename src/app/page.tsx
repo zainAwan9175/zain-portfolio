@@ -63,7 +63,23 @@ function WorkExperienceItem({ work, id }: { work: any; id: number }) {
               </div>
               <span className="text-xs sm:text-sm text-muted-foreground">{work.start} - {work.end ?? "Present"}</span>
             </div>
-            <p className="text-sm sm:text-base text-muted-foreground mt-1">{work.company} · {work.location}</p>
+            <p className="text-sm sm:text-base text-muted-foreground mt-1">
+              {work.link && work.link !== "#" ? (
+                <a
+                  href={work.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="font-medium text-foreground hover:underline"
+                >
+                  {work.company}
+                </a>
+              ) : (
+                <span className="font-medium text-foreground">{work.company}</span>
+              )}
+              {" · "}
+              {work.location}
+            </p>
           </div>
         </div>
         

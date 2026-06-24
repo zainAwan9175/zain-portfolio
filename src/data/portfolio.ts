@@ -34,7 +34,15 @@ export interface Contact {
   social: SocialLink[]
 }
 
+export interface SkillGroup {
+  category: string
+  items: string[]
+}
+
 export interface WorkItem {
+  /** Job title / role — shown as the bold heading. */
+  role: string
+  /** Company / project / org name. */
   company: string
   link: string
   location: string
@@ -79,7 +87,7 @@ export interface Project {
   description: string
   technologies: string[]
   links: ProjectLink[]
-  video: VideoRef
+  video?: VideoRef
   caseStudy?: CaseStudy
 }
 
@@ -94,13 +102,14 @@ export interface Hackathon {
 export interface Portfolio {
   name: string
   initials: string
+  headline: string
   location: string
   locationLink: string
   description: string
   summary: string
   avatarUrl: ImageRef
   resumeUrl: string
-  skills: string[]
+  skills: SkillGroup[]
   contact: Contact
   work: WorkItem[]
   education: EducationItem[]
@@ -111,43 +120,82 @@ export interface Portfolio {
 export const PORTFOLIO: Portfolio = {
   name: "Zain Ul Abedin",
   initials: "ZA",
+  headline: "Full Stack Engineer & AI Engineer",
   location: "Lahore, Pakistan",
   locationLink: "https://www.google.com/maps/place/Lahore",
   description:
-    "Software Engineer by profession, builder by passion, mentor by choice. With a strong interest in psychology, I'm fascinated by how people think, grow, and connect and that curiosity shapes the way I build products, support others, and contribute to the tech community.",
+    "Full Stack (MERN) & AI Engineer. I build LLM-powered apps with LangChain, RAG, and the OpenAI SDK, train large language models on competitive programming and reasoning, and ship pull requests to large open-source React Native projects like New Expensify and Joplin.",
   summary:
-    "I love building real-world projects, participating in hackathons, and collaborating with others to solve meaningful problems. Over the years, I've been actively involved in tech communities like GDGoC-UE, DevWeekends, and UE IT Society, where I've led workshops, organized events, mentored students, and supported early-career developers. Being part of these initiatives has helped me grow while also giving back to the community, which is something I truly value. I'm always excited about learning new things, especially through hands-on experience, and I'm deeply interested in joining innovative teams at big tech companies to build impactful products and continue helping others succeed in their tech journeys.",
+    "I'm a **Full Stack Engineer (MERN)** and **AI Engineer** who builds LLM-powered products end to end — from voice interfaces and RAG pipelines to scalable Node.js backends and React / React Native frontends.\n\nI'm the founder and maintainer of **VoiceyBill**, an open-source AI expense tracker; I train large language models at **Turing** to solve competitive-programming and multi-step reasoning problems; and I ship pull requests to large open-source projects like **New Expensify** and **Joplin**. Alongside the engineering, I mentor 50+ aspiring developers at **Dev Weekends** (one of Pakistan's largest dev communities, 20k+ members) and lead workshops as **Tech Lead at GDGoC-UE**.\n\nI care about clean architecture, strong written communication, and shipping things real people use.",
   avatarUrl: {
     public_id: "portfolio/x0vpzxbv2cekmy4rsutg",
     url: "https://res.cloudinary.com/do1vxto50/image/upload/v1760895606/portfolio/x0vpzxbv2cekmy4rsutg.jpg",
   },
-  resumeUrl: "https://drive.google.com/file/d/1p3rcSkoJl2eYToHa7-79_xBTUYiHT3E3/view",
+  // Served from /public — clicking the button downloads it directly (no Google Drive).
+  resumeUrl: "/Zain-Ul-Abedin-Resume.pdf",
   skills: [
-    "HTML",
-    "CSS",
-    "Tailwind CSS",
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "React Native",
-    "Next.js",
-    "Redux",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "SQL",
-    "Redis",
-    "Cloudinary",
-    "Clerk",
-    "Docker",
-    "Jenkins",
-    "NGINX",
-    "Amazon EC2",
-    "Amazon ECS",
-    "Amazon ECR",
-    "Route 53",
-    "GitHub",
-    "C/C++",
+    {
+      category: "AI Engineering",
+      items: [
+        "LangChain",
+        "LangGraph",
+        "RAG",
+        "CrewAI",
+        "OpenAI SDK",
+        "MCP",
+        "OpenAI API",
+        "Uplift AI (Voice)",
+        "Prompt Engineering",
+      ],
+    },
+    {
+      category: "LLM & Evaluation",
+      items: [
+        "LLM Training & Evaluation",
+        "AI Response Refinement",
+        "Function-Calling / Tool Use",
+        "Reasoning",
+        "Competitive Programming",
+      ],
+    },
+    {
+      category: "Web & Mobile",
+      items: [
+        "TypeScript",
+        "JavaScript",
+        "React",
+        "Next.js",
+        "React Native",
+        "Redux",
+        "Node.js",
+        "Express.js",
+        "Tailwind CSS",
+        "HTML & CSS",
+      ],
+    },
+    {
+      category: "Architecture, DevOps & Cloud",
+      items: [
+        "Microservices",
+        "Event-Driven (NATS)",
+        "REST APIs",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Jenkins",
+        "Nginx",
+        "AWS (EC2 / ECS / ECR / S3)",
+        "Google Cloud",
+      ],
+    },
+    {
+      category: "Databases & Tooling",
+      items: ["MongoDB", "SQL", "Redis", "Git & GitHub", "Code Review"],
+    },
+    {
+      category: "CS Fundamentals",
+      items: ["DSA", "OOP (C++)", "LeetCode 150+", "Problem-Solving", "APIs / JSON"],
+    },
   ],
   contact: {
     email: "zain9175zain@gmail.com",
@@ -166,22 +214,59 @@ export const PORTFOLIO: Portfolio = {
   },
   work: [
     {
-      company: "Headstarter AI",
-      link: "https://headstarter.co/",
-      location: "Remote — Software Engineer Fellow",
-      logoUrl: {
-        public_id: "portfolio/u4olxdfvahedv6v1kcbn",
-        url: "https://res.cloudinary.com/do1vxto50/image/upload/v1753976371/portfolio/u4olxdfvahedv6v1kcbn.jpg",
-      },
-      start: "July 2024",
-      end: "October 2024",
+      role: "Founder & Open-Source Maintainer",
+      company: "VoiceyBill",
+      link: "https://github.com/zainAwan9175",
+      location: "Remote",
+      logoUrl: { url: "" },
+      start: "April 2026",
+      end: "Present",
       description: [
-        "Built and deployed 5 AI projects in 5 weeks using React, Next.js, Firebase, Clerk, and Vercel, following agile methodologies with weekly sprints and CI/CD practices for iterative deployment.",
-        "Worked in a team of 3 to develop an interactive customer support agent using Next.js, with a custom RAG pipeline (OpenAI + Pinecone) that responds based on a company's knowledge base.",
-        "Collaborated with 3 Fellows to build and deploy a SaaS product that generates dynamic flashcards for any topic using the Llama 3.1 LLM via the Groq API, with a paywall and custom pricing plans via the Stripe API.",
-        "Implemented a web scraper that extracts data from Rate My Professor and upserts it to a Pinecone index, integrated with a RAG pipeline using LangChain and OpenAI GPT-4 for up-to-date, relevant answers.",
-        "Scaled each web app to 200+ users and iterated on user feedback to make continuous optimizations.",
-        "Participated in weekly sessions with engineers from Google, Y Combinator, Stanford, Amazon, and venture-backed startups.",
+        "Built and released VoiceyBill, an open-source personal expense tracker spanning a mobile app, web app, and Node.js backend that lets users log income and expenses by voice.",
+        "Integrated Uplift AI voice models and the OpenAI API to power voice input, AI receipt scanning, and smart auto-categorization, with analytics dashboards and scheduled email reports.",
+        "Ran it as a project in Dev Weekends Summer of Code (DSOC): opened issues, reviewed contributor pull requests, mentored contributors, and selected finalists based on PR quality and codebase understanding.",
+      ],
+    },
+    {
+      role: "Open-Source Contributor",
+      company: "Joplin & Open Source",
+      link: "https://github.com/zainAwan9175",
+      location: "Remote",
+      logoUrl: { url: "" },
+      start: "February 2026",
+      end: "April 2026",
+      description: [
+        "Contributed to open-source projects including Joplin, an open-source note-taking app, submitting and shipping pull requests while preparing for Google Summer of Code (GSoC).",
+        "Navigated large TypeScript and React Native codebases, fixed issues, and followed each project's contribution guidelines, code-review, and testing standards.",
+      ],
+    },
+    {
+      role: "LLM Trainer",
+      company: "Turing",
+      link: "https://www.turing.com/",
+      location: "Remote",
+      logoUrl: { url: "" },
+      start: "October 2025",
+      end: "January 2026",
+      description: [
+        "Trained large language models to solve complex competitive-programming problems and strengthen multi-step reasoning, producing high-quality proprietary data for fine-tuning and benchmark evaluation.",
+        "Created, evaluated, and refined AI-generated code responses for accuracy, efficiency, and alignment with high coding standards across multiple programming languages.",
+        "Designed multi-turn conversations and agent-completion scenarios simulating realistic user–assistant interactions, including function-calling and tool use across calendar, email, maps, and drive.",
+        "Authored edge-case scenarios and reference solutions, identifying model failure modes and iterating to improve correctness, reasoning, and instruction-following.",
+      ],
+    },
+    {
+      role: "Open-Source Contributor",
+      company: "New Expensify (Expensify/App)",
+      link: "https://github.com/Expensify/App",
+      location: "Remote",
+      logoUrl: { url: "" },
+      start: "July 2025",
+      end: "October 2025",
+      description: [
+        "Contributed to New Expensify, a large, widely-used open-source React Native expense-management and financial-collaboration platform.",
+        "Authored and submitted pull requests addressing UI and functionality issues across a production-grade, offline-first codebase built on the Onyx state-management library.",
+        "Collaborated through GitHub code review, adhering to strict contribution standards, linting, and testing requirements.",
       ],
     },
   ],
@@ -189,7 +274,7 @@ export const PORTFOLIO: Portfolio = {
     {
       school: "University of Education, Lahore",
       link: "https://ue.edu.pk/",
-      degree: "Bachelor of Science in Computer Science (BSCS)",
+      degree: "B.S. in Computer Science · GPA 3.5",
       logoUrl: {
         public_id: "portfolio/u4argzw3y8kwwtftiupv",
         url: "https://res.cloudinary.com/do1vxto50/image/upload/v1753976484/portfolio/u4argzw3y8kwwtftiupv.jpg",
@@ -200,7 +285,7 @@ export const PORTFOLIO: Portfolio = {
     {
       school: "Govt. Graduate College Township, Lahore",
       link: "http://gctownship.edu.pk/",
-      degree: "Faculty of Science (FSc)",
+      degree: "Faculty of Science (FSc, Pre-Engineering)",
       logoUrl: {
         public_id: "portfolio/qn13fsoydhfa6mvfpqtv",
         url: "https://res.cloudinary.com/do1vxto50/image/upload/v1754009780/portfolio/qn13fsoydhfa6mvfpqtv.jpg",
@@ -209,80 +294,28 @@ export const PORTFOLIO: Portfolio = {
       end: "July 2023",
     },
   ],
+  // Listed in display order (most impressive / recent first).
   projects: [
     {
-      _id: "gdgoc-ue",
-      title: "GDGoC UE",
-      link: "https://our-site-client.vercel.app/",
-      dates: "September 2024",
-      active: false,
-      description:
-        "Google Developer Group on Campus (GDGoC UE) – University of Education, Lahore. Worked as a full-stack developer to build a community platform for students. Built the frontend with Next.js for a fast, SEO-friendly experience and the backend with Node.js and Express for scalable API handling. Integrated Clerk for secure authentication and Firebase for seamless image uploads.",
-      technologies: ["Next.js", "TailwindCSS", "Firebase", "shadcn/ui", "Node.js", "Express", "MongoDB"],
-      links: [
-        { type: "Website", link: "https://our-site-client.vercel.app/" },
-        { type: "Source", link: "https://github.com/zainAwan9175/GDGoC-UE" },
-      ],
-      video: {
-        public_id: "videos/edyz78v81zx1pscnfruo",
-        url: "https://res.cloudinary.com/do1vxto50/video/upload/v1753977126/videos/edyz78v81zx1pscnfruo.mp4",
-      },
-    },
-    {
-      _id: "ue-readers-club",
-      title: "UE Readers Club",
-      link: "https://ue-readers-club.vercel.app/",
-      dates: "November 2024",
-      active: false,
-      description:
-        "Developed a book discussion platform with real-time chat functionality, enabling users to engage in interactive discussions about literature. Built with Next.js for SEO optimization and efficient server-side rendering, Firebase for secure and scalable image storage, and the MERN stack (MongoDB, Express, Node.js) for a robust backend handling user data and chat.",
-      technologies: ["Next.js", "TailwindCSS", "Firebase", "Node.js", "Express", "MongoDB"],
-      links: [
-        { type: "Website", link: "https://ue-readers-club.vercel.app/" },
-        { type: "Source", link: "https://github.com/zainAwan9175/ue-book-club" },
-      ],
-      video: {
-        public_id: "videos/lkpc5zcgs5tr2czkidkk",
-        url: "https://res.cloudinary.com/do1vxto50/video/upload/v1754010634/videos/lkpc5zcgs5tr2czkidkk.mp4",
-      },
-    },
-    {
-      _id: "mama-marketplace",
-      title: "Mama Marketplace",
-      link: "https://mama-marketplace.ch/",
-      dates: "February 2025",
-      active: false,
-      description:
-        "Mama Marketplace (live in Germany) is a modern e-commerce platform built with Next.js for a fast, SEO-friendly frontend and Tailwind CSS for a sleek UI. The Node.js & Express backend, powered by MongoDB, ensures scalability and efficiency, while Redis enhances performance with caching. Secure transactions are enabled via the PayRex payment gateway, and Cloudinary handles optimized image uploads for a smooth user experience.",
-      technologies: ["Next.js", "TailwindCSS", "Cloudinary", "Redis", "PayRex", "Node.js", "Express", "MongoDB"],
-      links: [
-        { type: "Website", link: "https://mama-marketplace.ch/" },
-        { type: "Source", link: "https://github.com/zainAwan9175/Mama-MarketPlace" },
-      ],
-      video: {
-        public_id: "videos/rxmiy3s6dirm2yxdsy0t",
-        url: "https://res.cloudinary.com/do1vxto50/video/upload/v1754011192/videos/rxmiy3s6dirm2yxdsy0t.mp4",
-      },
-    },
-    {
       _id: "marketnest",
-      title: "MarketNest",
+      title: "MarketNest — Multi-Vendor E-Commerce",
       link: "https://multivendor-client.vercel.app/",
-      dates: "June 2025",
+      dates: "April 2025 – June 2025",
       active: false,
       description:
-        "MarketNest is a full-stack multi-vendor e-commerce platform built with the MERN stack, featuring real-time messaging, event-based sales with countdown timers, and secure payment processing. The platform supports multiple sellers and buyers with real-time communication capabilities.",
+        "A full-stack, multi-vendor e-commerce platform (MERN) where vendors register, list products, and manage orders. Features real-time vendor–customer chat with Socket.io, JWT + Clerk authentication with email verification via NodeMailer, and secure payments through Stripe and PayPal. Complex global state is managed with Redux Toolkit, and the app is containerized with Docker and shipped through a Jenkins CI/CD pipeline to Vercel and AWS EC2.",
       technologies: [
         "React",
         "Node.js",
         "Express",
         "MongoDB",
         "Redux",
+        "Socket.io",
         "Stripe",
         "PayPal",
         "Docker",
         "Jenkins",
-        "Amazon EC2",
+        "AWS EC2",
       ],
       links: [
         { type: "Website", link: "https://multivendor-client.vercel.app/" },
@@ -296,10 +329,10 @@ export const PORTFOLIO: Portfolio = {
       caseStudy: {
         youtubeVideoUrl: "https://res.cloudinary.com/do1vxto50/video/upload/v1754099317/screen-capture_1_u1ur9w.mp4",
         projectOverview:
-          "This e-commerce platform represents a comprehensive solution for modern online retail businesses. Built with scalability and performance in mind, it handles everything from product catalog management to secure payment processing.\n\nThe platform features a responsive design that works seamlessly across all devices, an intuitive admin dashboard for business owners, and advanced analytics to track sales performance and customer behavior.\n\nKey focus areas include performance optimization, security best practices, and providing an exceptional user experience that converts visitors into customers.",
+          "MarketNest is a comprehensive solution for modern online retail. Built with scalability and performance in mind, it handles everything from product catalog management to secure payment processing.\n\nThe platform features a responsive design that works seamlessly across devices, an intuitive admin dashboard for business owners, and analytics to track sales performance and customer behavior.\n\nKey focus areas include performance optimization, security best practices, and an exceptional user experience that converts visitors into customers.",
         keyFeatures: [
           "User Authentication & Authorization",
-          "Shopping Cart & Wishlist Functionality",
+          "Shopping Cart & Wishlist",
           "Event Management with Countdown Timers",
           "Seller Dashboard & Analytics",
           "Review & Rating System",
@@ -342,7 +375,7 @@ export const PORTFOLIO: Portfolio = {
             challenge:
               "Implementing real-time messaging between multiple vendors and customers while maintaining performance.",
             solution:
-              "Utilized Socket.io for real-time bidirectional communication, implemented proper room management, and optimized event handling for scalability.",
+              "Used Socket.io for real-time bidirectional communication, implemented proper room management, and optimized event handling for scalability.",
           },
           {
             title: "Multi-vendor Architecture",
@@ -352,6 +385,71 @@ export const PORTFOLIO: Portfolio = {
               "Designed a flexible MongoDB schema with role-based access control, implemented vendor-specific analytics, and created automated commission calculations.",
           },
         ],
+      },
+    },
+    {
+      _id: "microservices-streaming-platform",
+      title: "Microservices Streaming Platform",
+      link: "https://github.com/zainAwan9175/ticketing",
+      dates: "April 2026 – June 2026",
+      active: false,
+      description:
+        "An event-driven microservices architecture in Node.js and TypeScript, with independently deployable services that communicate asynchronously over a NATS streaming server (plus REST APIs for synchronous calls). Each service is containerized with Docker and orchestrated on Kubernetes for horizontal scaling, self-healing, and smooth rolling deployments.",
+      technologies: ["Node.js", "TypeScript", "Microservices", "NATS", "Docker", "Kubernetes", "REST APIs"],
+      links: [{ type: "Source", link: "https://github.com/zainAwan9175/ticketing" }],
+    },
+    {
+      _id: "mama-marketplace",
+      title: "Mama Marketplace",
+      link: "https://mama-marketplace.ch/",
+      dates: "January 2025 – February 2025",
+      active: false,
+      description:
+        "A high-performance e-commerce platform live in Germany. Built a TypeScript backend with Node.js, Express, and MongoDB, added Redis caching to cut response times, integrated the PayRex gateway for secure payments, and used Cloudinary for optimized image delivery. The Next.js + Tailwind frontend keeps the experience fast and SEO-friendly.",
+      technologies: ["Next.js", "TypeScript", "Node.js", "Express", "MongoDB", "Redis", "PayRex", "Cloudinary"],
+      links: [
+        { type: "Website", link: "https://mama-marketplace.ch/" },
+        { type: "Source", link: "https://github.com/zainAwan9175/Mama-MarketPlace" },
+      ],
+      video: {
+        public_id: "videos/rxmiy3s6dirm2yxdsy0t",
+        url: "https://res.cloudinary.com/do1vxto50/video/upload/v1754011192/videos/rxmiy3s6dirm2yxdsy0t.mp4",
+      },
+    },
+    {
+      _id: "gdgoc-ue",
+      title: "GDGoC UE Community Platform",
+      link: "https://our-site-client.vercel.app/",
+      dates: "September 2024 – October 2024",
+      active: false,
+      description:
+        "A community platform for Google Developer Group on Campus (GDGoC UE), University of Education, Lahore. SEO-friendly Next.js frontend, a scalable Node.js / Express backend, Clerk authentication, and Firebase-backed image uploads.",
+      technologies: ["Next.js", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Clerk", "Firebase"],
+      links: [
+        { type: "Website", link: "https://our-site-client.vercel.app/" },
+        { type: "Source", link: "https://github.com/zainAwan9175/GDGoC-UE" },
+      ],
+      video: {
+        public_id: "videos/edyz78v81zx1pscnfruo",
+        url: "https://res.cloudinary.com/do1vxto50/video/upload/v1753977126/videos/edyz78v81zx1pscnfruo.mp4",
+      },
+    },
+    {
+      _id: "ue-readers-club",
+      title: "UE Readers Club",
+      link: "https://ue-readers-club.vercel.app/",
+      dates: "October 2024 – November 2024",
+      active: false,
+      description:
+        "A book-discussion platform with real-time chat that lets readers discuss literature together. Built with Next.js for SSR and SEO, Firebase for secure image storage, and the MERN stack for a scalable backend handling users and chat.",
+      technologies: ["Next.js", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Firebase"],
+      links: [
+        { type: "Website", link: "https://ue-readers-club.vercel.app/" },
+        { type: "Source", link: "https://github.com/zainAwan9175/ue-book-club" },
+      ],
+      video: {
+        public_id: "videos/lkpc5zcgs5tr2czkidkk",
+        url: "https://res.cloudinary.com/do1vxto50/video/upload/v1754010634/videos/lkpc5zcgs5tr2czkidkk.mp4",
       },
     },
   ],
@@ -377,6 +475,16 @@ export const PORTFOLIO: Portfolio = {
       },
     },
     {
+      title: "UE Code Quest",
+      dates: "May 2024",
+      location: "University of Education, Lahore",
+      description: "2nd Runner-Up — solved 4 of 5 problems in a timed coding competition with my team.",
+      image: {
+        public_id: "portfolio/dqswel6hipzeojx3818s",
+        url: "https://res.cloudinary.com/do1vxto50/image/upload/v1754062700/portfolio/dqswel6hipzeojx3818s.png",
+      },
+    },
+    {
       title: "Electrocon 24",
       dates: "March 2024",
       location: "UET, Lahore",
@@ -384,16 +492,6 @@ export const PORTFOLIO: Portfolio = {
       image: {
         public_id: "portfolio/sn2jc1bj7ohvdrlggf6n",
         url: "https://res.cloudinary.com/do1vxto50/image/upload/v1754062648/portfolio/sn2jc1bj7ohvdrlggf6n.jpg",
-      },
-    },
-    {
-      title: "UE Code Quest",
-      dates: "May 2024",
-      location: "University of Education, Lahore",
-      description: "2nd Runner-Up with my team.",
-      image: {
-        public_id: "portfolio/dqswel6hipzeojx3818s",
-        url: "https://res.cloudinary.com/do1vxto50/image/upload/v1754062700/portfolio/dqswel6hipzeojx3818s.png",
       },
     },
   ],

@@ -51,11 +51,11 @@ function WorkExperienceItem({ work, id }: { work: any; id: number }) {
           <div className="flex-1 min-w-0">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
               <div className="inline-flex items-center gap-2">
-                <span className="text-base sm:text-lg font-semibold">{work.company}</span>
-                <svg 
+                <span className="text-base sm:text-lg font-semibold">{work.role}</span>
+                <svg
                   className={`size-3.5 sm:size-4 flex-shrink-0 transition-transform duration-300 ease-in-out ${isExpanded ? 'rotate-90' : ''}`}
-                  fill="none" 
-                  stroke="currentColor" 
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -63,7 +63,7 @@ function WorkExperienceItem({ work, id }: { work: any; id: number }) {
               </div>
               <span className="text-xs sm:text-sm text-muted-foreground">{work.start} - {work.end ?? "Present"}</span>
             </div>
-            <p className="text-sm sm:text-base text-muted-foreground mt-1">{work.location}</p>
+            <p className="text-sm sm:text-base text-muted-foreground mt-1">{work.company} · {work.location}</p>
           </div>
         </div>
         
@@ -136,6 +136,12 @@ export default function Page() {
                   </h1>
                 </BlurFade>
 
+                <BlurFade delay={BLUR_FADE_DELAY * 1.75}>
+                  <p className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground/90">
+                    {portfolio.headline}
+                  </p>
+                </BlurFade>
+
                 <BlurFade delay={BLUR_FADE_DELAY * 2}>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground leading-relaxed max-w-xl">
                     {portfolio.description}
@@ -152,11 +158,13 @@ export default function Page() {
                     </Link>
                     <a
                       href={portfolio.resumeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-foreground/20 rounded-xl sm:rounded-2xl font-semibold hover:bg-foreground/5 hover:border-foreground/40 transition-all hover:scale-105 text-center text-sm sm:text-base"
+                      download="Zain-Ul-Abedin-Resume.pdf"
+                      className="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 border-2 border-foreground/20 rounded-xl sm:rounded-2xl font-semibold hover:bg-foreground/5 hover:border-foreground/40 transition-all hover:scale-105 text-center text-sm sm:text-base"
                     >
-                      View Resume
+                      <svg className="size-4 sm:size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      </svg>
+                      Download Resume
                     </a>
                   </div>
                 </BlurFade>
@@ -203,11 +211,23 @@ export default function Page() {
               </h2>
             </BlurFade>
             
-            <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2">
-              {portfolio.skills.map((skill, id) => (
-                <BlurFade key={skill} delay={BLUR_FADE_DELAY * 9 + id * 0.02}>
-                  <div className="py-2 sm:py-1.5 text-center text-xs sm:text-xs font-medium bg-black dark:bg-black text-white dark:text-white rounded-md hover:bg-black/90 transition-colors">
-                    {skill}
+            <div className="space-y-6 sm:space-y-8">
+              {portfolio.skills.map((group, gi) => (
+                <BlurFade key={group.category} delay={BLUR_FADE_DELAY * 9 + gi * 0.05}>
+                  <div className="space-y-3">
+                    <h3 className="text-sm sm:text-base font-semibold text-muted-foreground uppercase tracking-wide">
+                      {group.category}
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-3 py-1.5 text-xs sm:text-sm font-medium bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </BlurFade>
               ))}
@@ -291,25 +311,22 @@ export default function Page() {
             </BlurFade>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-              {portfolio.projects
-                .slice()
-                .reverse()
-                .map((project, id) => (
-                  <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 15 + id * 0.05}>
-                    <ProjectCard
-                      link={project.link}
-                      key={project.title}
-                      title={project.title}
-                      description={project.description}
-                      dates={project.dates}
-                      tags={project.technologies}
-                      video={project.video.url}
-                      links={project.links}
-                      projectId={(project as any)._id}
-                      hasCaseStudyVideo={!!project.caseStudy?.youtubeVideoUrl}
-                    />
-                  </BlurFade>
-                ))}
+              {portfolio.projects.map((project, id) => (
+                <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 15 + id * 0.05}>
+                  <ProjectCard
+                    link={project.link}
+                    key={project.title}
+                    title={project.title}
+                    description={project.description}
+                    dates={project.dates}
+                    tags={project.technologies}
+                    video={project.video?.url}
+                    links={project.links}
+                    projectId={project._id}
+                    hasCaseStudyVideo={!!project.caseStudy?.youtubeVideoUrl}
+                  />
+                </BlurFade>
+              ))}
             </div>
           </div>
         </section>
@@ -330,20 +347,17 @@ export default function Page() {
             
             {portfolio.hackathons && portfolio.hackathons.length > 0 ? (
               <div className="grid gap-4 sm:gap-6">
-                {portfolio.hackathons
-                  .slice()
-                  .reverse()
-                  .map((project, id) => (
-                    <BlurFade key={`${project.title}-${project.dates}`} delay={BLUR_FADE_DELAY * 17 + id * 0.05}>
-                      <HackathonCard
-                        title={project.title}
-                        description={project.description || ""}
-                        location={project.location}
-                        dates={project.dates}
-                        image={project.image.url}
-                      />
-                    </BlurFade>
-                  ))}
+                {portfolio.hackathons.map((project, id) => (
+                  <BlurFade key={`${project.title}-${project.dates}`} delay={BLUR_FADE_DELAY * 17 + id * 0.05}>
+                    <HackathonCard
+                      title={project.title}
+                      description={project.description || ""}
+                      location={project.location}
+                      dates={project.dates}
+                      image={project.image.url}
+                    />
+                  </BlurFade>
+                ))}
               </div>
             ) : (
               <div className="text-center py-12">

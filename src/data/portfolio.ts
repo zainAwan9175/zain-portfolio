@@ -232,7 +232,7 @@ export const PORTFOLIO: Portfolio = {
     {
       role: "Open-Source Contributor",
       company: "Joplin & Open Source",
-      link: "https://github.com/zainAwan9175",
+      link: "https://github.com/laurent22/joplin/",
       location: "Remote",
       logoUrl: { url: "/joplin.jpg" },
       start: "February 2026",

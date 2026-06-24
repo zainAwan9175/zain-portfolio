@@ -49,6 +49,8 @@ export interface WorkItem {
   logoUrl: ImageRef
   start: string
   end: string
+  /** Optional one-line context about the company (shown under the title). */
+  context?: string
   /** A single paragraph, or an array of bullet points. */
   description: string | string[]
 }
@@ -248,8 +250,11 @@ export const PORTFOLIO: Portfolio = {
       logoUrl: { url: "/turing.png" },
       start: "October 2025",
       end: "January 2026",
+      context:
+        "Turing is a leading applied-AI company and a key coding & training-data partner to OpenAI and other frontier LLM labs — Series E at a ~$2.2B valuation (~$300M ARR), powered by a 4M+ global developer network.",
       description: [
-        "Trained large language models to solve complex competitive-programming problems and strengthen multi-step reasoning, producing high-quality proprietary data for fine-tuning and benchmark evaluation.",
+        "Worked within Turing's AGI Advancement program, producing expert human data used to train and evaluate frontier large language models.",
+        "Trained LLMs to solve complex competitive-programming problems and strengthen multi-step reasoning, generating high-quality proprietary data for fine-tuning and benchmark evaluation.",
         "Created, evaluated, and refined AI-generated code responses for accuracy, efficiency, and alignment with high coding standards across multiple programming languages.",
         "Designed multi-turn conversations and agent-completion scenarios simulating realistic user–assistant interactions, including function-calling and tool use across calendar, email, maps, and drive.",
         "Authored edge-case scenarios and reference solutions, identifying model failure modes and iterating to improve correctness, reasoning, and instruction-following.",

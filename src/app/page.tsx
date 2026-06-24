@@ -80,6 +80,11 @@ function WorkExperienceItem({ work, id }: { work: any; id: number }) {
               {" · "}
               {work.location}
             </p>
+            {work.context && (
+              <p className="text-xs sm:text-sm text-muted-foreground/80 italic mt-1.5 leading-relaxed">
+                {work.context}
+              </p>
+            )}
           </div>
         </div>
         

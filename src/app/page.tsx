@@ -320,6 +320,7 @@ export default function Page() {
           </div>
         </section>
         {/* Projects Section - Simplified */}
+        {mainProjects.length > 0 && (
         <section id="projects" className="scroll-mt-16 sm:scroll-mt-20">
           <div className="max-w-6xl mx-auto">
             <BlurFade delay={BLUR_FADE_DELAY * 14}>
@@ -353,6 +354,7 @@ export default function Page() {
             </div>
           </div>
         </section>
+        )}
 
         {/* Practice / Learning Projects */}
         {practiceProjects.length > 0 && (

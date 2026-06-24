@@ -309,6 +309,7 @@ export const PORTFOLIO: Portfolio = {
       link: "https://multivendor-client.vercel.app/",
       dates: "April 2025 – June 2025",
       active: false,
+      practice: true,
       description:
         "A full-stack, multi-vendor e-commerce platform (MERN) where vendors register, list products, and manage orders. Features real-time vendor–customer chat with Socket.io, JWT + Clerk authentication with email verification via NodeMailer, and secure payments through Stripe and PayPal. Complex global state is managed with Redux Toolkit, and the app is containerized with Docker and shipped through a Jenkins CI/CD pipeline to Vercel and AWS EC2.",
       technologies: [
@@ -412,6 +413,7 @@ export const PORTFOLIO: Portfolio = {
       link: "https://mama-marketplace.ch/",
       dates: "January 2025 – February 2025",
       active: false,
+      practice: true,
       description:
         "A high-performance e-commerce platform live in Germany. Built a TypeScript backend with Node.js, Express, and MongoDB, added Redis caching to cut response times, integrated the PayRex gateway for secure payments, and used Cloudinary for optimized image delivery. The Next.js + Tailwind frontend keeps the experience fast and SEO-friendly.",
       technologies: ["Next.js", "TypeScript", "Node.js", "Express", "MongoDB", "Redis", "PayRex", "Cloudinary"],
@@ -430,6 +432,7 @@ export const PORTFOLIO: Portfolio = {
       link: "https://our-site-client.vercel.app/",
       dates: "September 2024 – October 2024",
       active: false,
+      practice: true,
       description:
         "A community platform for Google Developer Group on Campus (GDGoC UE), University of Education, Lahore. SEO-friendly Next.js frontend, a scalable Node.js / Express backend, Clerk authentication, and Firebase-backed image uploads.",
       technologies: ["Next.js", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Clerk", "Firebase"],
@@ -448,6 +451,7 @@ export const PORTFOLIO: Portfolio = {
       link: "https://ue-readers-club.vercel.app/",
       dates: "October 2024 – November 2024",
       active: false,
+      practice: true,
       description:
         "A book-discussion platform with real-time chat that lets readers discuss literature together. Built with Next.js for SSR and SEO, Firebase for secure image storage, and the MERN stack for a scalable backend handling users and chat.",
       technologies: ["Next.js", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Firebase"],

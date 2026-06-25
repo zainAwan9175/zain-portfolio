@@ -356,27 +356,37 @@ export default function Page() {
                       href={cert.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group flex items-start gap-4 h-full rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm p-5 transition-all duration-300 hover:border-foreground/30 hover:shadow-lg"
+                      className="group block h-full rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-foreground/30 hover:shadow-lg"
                     >
-                      <div className="flex items-center justify-center size-11 rounded-xl bg-foreground text-background flex-shrink-0 overflow-hidden">
-                        {cert.logoUrl ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={cert.logoUrl} alt="" className="size-11 object-cover" />
-                        ) : (
-                          <Award className="size-5" />
+                      {cert.image ? (
+                        <div className="overflow-hidden border-b border-border/60 bg-muted/30">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={cert.image}
+                            alt={`${cert.title} certificate`}
+                            loading="lazy"
+                            className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                          />
+                        </div>
+                      ) : null}
+                      <div className="flex items-start gap-3 p-5">
+                        {!cert.image && (
+                          <div className="flex items-center justify-center size-11 rounded-xl bg-foreground text-background flex-shrink-0">
+                            <Award className="size-5" />
+                          </div>
                         )}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-semibold text-sm sm:text-base leading-snug">{cert.title}</h3>
-                        <p className="text-xs sm:text-sm text-muted-foreground mt-1">
-                          {cert.issuer} · {cert.date}
-                        </p>
-                        <span className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium mt-2 text-foreground group-hover:underline">
-                          View credential
-                          <svg className="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                          </svg>
-                        </span>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-semibold text-sm sm:text-base leading-snug">{cert.title}</h3>
+                          <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+                            {cert.issuer} · {cert.date}
+                          </p>
+                          <span className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium mt-2 text-foreground group-hover:underline">
+                            View credential
+                            <svg className="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                          </span>
+                        </div>
                       </div>
                     </a>
                   </BlurFade>

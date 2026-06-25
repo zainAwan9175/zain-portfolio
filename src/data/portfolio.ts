@@ -108,8 +108,8 @@ export interface Certification {
   issuer: string
   date: string
   link: string
-  /** Optional logo image path; falls back to an award icon. */
-  logoUrl?: string
+  /** Optional certificate image path; shown as a preview when present. */
+  image?: string
 }
 
 export interface Portfolio {
@@ -522,12 +522,14 @@ export const PORTFOLIO: Portfolio = {
       issuer: "Udemy · Ed Donner",
       date: "Mar 2026 – Apr 2026",
       link: "https://www.udemy.com/certificate/UC-639304d8-cb6b-4db4-8e6a-372f14eb4775/",
+      image: "/cert-ai-agentic.jpg",
     },
     {
       title: "Microservices with Node JS and React",
       issuer: "Udemy · Stephen Grider",
       date: "Apr 2026 – Jun 2026",
-      link: "https://www.udemy.com/course/microservices-with-node-js-and-react/",
+      link: "https://www.udemy.com/certificate/UC-f011aaf4-7fa1-4d47-b0fb-7b8bb467a0db/",
+      image: "/cert-microservices.jpg",
     },
   ],
 }

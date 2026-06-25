@@ -132,8 +132,7 @@ export const PORTFOLIO: Portfolio = {
   summary:
     "I'm a **Full Stack Engineer (MERN)** and **AI Engineer** who builds LLM-powered products end to end — from voice interfaces and RAG pipelines to scalable Node.js backends and React / React Native frontends.\n\nI'm the founder and maintainer of **VoiceyBill**, an open-source AI expense tracker; I train large language models at **Turing** to solve competitive-programming and multi-step reasoning problems; and I ship pull requests to large open-source projects like **New Expensify** and **Joplin**. Alongside the engineering, I mentor 50+ aspiring developers at **Dev Weekends** (one of Pakistan's largest dev communities, 20k+ members) and lead workshops as **Tech Lead at GDGoC-UE**.\n\nI care about clean architecture, strong written communication, and shipping things real people use.",
   avatarUrl: {
-    public_id: "portfolio/x0vpzxbv2cekmy4rsutg",
-    url: "https://res.cloudinary.com/do1vxto50/image/upload/v1760895606/portfolio/x0vpzxbv2cekmy4rsutg.jpg",
+    url: "/me.png",
   },
   // Served from /public — clicking the button downloads it directly (no Google Drive).
   resumeUrl: "/Zain-Ul-Abedin-Resume.pdf",

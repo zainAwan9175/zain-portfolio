@@ -11,8 +11,19 @@ import { cva } from "class-variance-authority"
 import Markdown from "react-markdown"
 import { useState } from "react"
 import { PORTFOLIO, type Portfolio } from "@/data/portfolio"
+import { Sparkles, BrainCircuit, Code2, Server, Database, Binary, type LucideIcon } from "lucide-react"
 
 const BLUR_FADE_DELAY = 0.04
+
+// Icon per skill category (keyed by the category name in portfolio.ts).
+const SKILL_ICONS: Record<string, LucideIcon> = {
+  "AI Engineering": Sparkles,
+  "LLM & Evaluation": BrainCircuit,
+  "Web & Mobile": Code2,
+  "Architecture, DevOps & Cloud": Server,
+  "Databases & Tooling": Database,
+  "CS Fundamentals": Binary,
+}
 const badgeVariants = cva(
   "inline-flex items-center rounded-full border px-3 py-1.5 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
@@ -234,26 +245,34 @@ export default function Page() {
               </h2>
             </BlurFade>
             
-            <div className="space-y-6 sm:space-y-8">
-              {portfolio.skills.map((group, gi) => (
-                <BlurFade key={group.category} delay={BLUR_FADE_DELAY * 9 + gi * 0.05}>
-                  <div className="space-y-3">
-                    <h3 className="text-sm sm:text-base font-semibold text-muted-foreground uppercase tracking-wide">
-                      {group.category}
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {group.items.map((skill) => (
-                        <span
-                          key={skill}
-                          className="px-3 py-1.5 text-xs sm:text-sm font-medium bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors"
-                        >
-                          {skill}
-                        </span>
-                      ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+              {portfolio.skills.map((group, gi) => {
+                const Icon = SKILL_ICONS[group.category]
+                return (
+                  <BlurFade key={group.category} delay={BLUR_FADE_DELAY * 9 + gi * 0.05}>
+                    <div className="group h-full rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm p-5 sm:p-6 transition-all duration-300 hover:border-foreground/30 hover:shadow-lg">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="flex items-center justify-center size-9 rounded-xl bg-foreground text-background flex-shrink-0 transition-transform duration-300 group-hover:scale-110">
+                          {Icon && <Icon className="size-5" />}
+                        </div>
+                        <h3 className="text-sm sm:text-base font-semibold tracking-wide">
+                          {group.category}
+                        </h3>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {group.items.map((skill) => (
+                          <span
+                            key={skill}
+                            className="px-3 py-1.5 text-xs sm:text-sm font-medium rounded-full border border-foreground/10 bg-foreground/[0.04] text-foreground/80 transition-colors duration-200 hover:bg-foreground hover:text-background hover:border-foreground cursor-default"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </BlurFade>
-              ))}
+                  </BlurFade>
+                )
+              })}
             </div>
           </div>
         </section>

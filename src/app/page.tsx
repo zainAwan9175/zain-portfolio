@@ -11,7 +11,7 @@ import { cva } from "class-variance-authority"
 import Markdown from "react-markdown"
 import { useState } from "react"
 import { PORTFOLIO, type Portfolio } from "@/data/portfolio"
-import { Sparkles, BrainCircuit, Code2, Server, Database, Binary, type LucideIcon } from "lucide-react"
+import { Sparkles, BrainCircuit, Code2, Server, Database, Binary, Award, type LucideIcon } from "lucide-react"
 
 const BLUR_FADE_DELAY = 0.04
 
@@ -338,6 +338,54 @@ export default function Page() {
             </div>
           </div>
         </section>
+
+        {/* Certifications */}
+        {portfolio.certifications.length > 0 && (
+          <section id="certifications" className="scroll-mt-16 sm:scroll-mt-20">
+            <div className="max-w-6xl mx-auto">
+              <BlurFade delay={BLUR_FADE_DELAY * 13.5}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6 md:mb-8">
+                  Certifications
+                </h2>
+              </BlurFade>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                {portfolio.certifications.map((cert, id) => (
+                  <BlurFade key={cert.title} delay={BLUR_FADE_DELAY * 14 + id * 0.05}>
+                    <a
+                      href={cert.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-start gap-4 h-full rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm p-5 transition-all duration-300 hover:border-foreground/30 hover:shadow-lg"
+                    >
+                      <div className="flex items-center justify-center size-11 rounded-xl bg-foreground text-background flex-shrink-0 overflow-hidden">
+                        {cert.logoUrl ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={cert.logoUrl} alt="" className="size-11 object-cover" />
+                        ) : (
+                          <Award className="size-5" />
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-semibold text-sm sm:text-base leading-snug">{cert.title}</h3>
+                        <p className="text-xs sm:text-sm text-muted-foreground mt-1">
+                          {cert.issuer} · {cert.date}
+                        </p>
+                        <span className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium mt-2 text-foreground group-hover:underline">
+                          View credential
+                          <svg className="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                          </svg>
+                        </span>
+                      </div>
+                    </a>
+                  </BlurFade>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
         {/* Projects Section - Simplified */}
         {mainProjects.length > 0 && (
         <section id="projects" className="scroll-mt-16 sm:scroll-mt-20">

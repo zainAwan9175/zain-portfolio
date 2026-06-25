@@ -103,6 +103,15 @@ export interface Hackathon {
   image: ImageRef
 }
 
+export interface Certification {
+  title: string
+  issuer: string
+  date: string
+  link: string
+  /** Optional logo image path; falls back to an award icon. */
+  logoUrl?: string
+}
+
 export interface Portfolio {
   name: string
   initials: string
@@ -119,6 +128,7 @@ export interface Portfolio {
   education: EducationItem[]
   projects: Project[]
   hackathons: Hackathon[]
+  certifications: Certification[]
 }
 
 export const PORTFOLIO: Portfolio = {
@@ -504,6 +514,20 @@ export const PORTFOLIO: Portfolio = {
         public_id: "portfolio/sn2jc1bj7ohvdrlggf6n",
         url: "https://res.cloudinary.com/do1vxto50/image/upload/v1754062648/portfolio/sn2jc1bj7ohvdrlggf6n.jpg",
       },
+    },
+  ],
+  certifications: [
+    {
+      title: "AI Engineer Agentic Track: The Complete Agent & MCP Course",
+      issuer: "Udemy · Ed Donner",
+      date: "Mar 2026 – Apr 2026",
+      link: "https://www.udemy.com/certificate/UC-639304d8-cb6b-4db4-8e6a-372f14eb4775/",
+    },
+    {
+      title: "Microservices with Node JS and React",
+      issuer: "Udemy · Stephen Grider",
+      date: "Apr 2026 – Jun 2026",
+      link: "https://www.udemy.com/course/microservices-with-node-js-and-react/",
     },
   ],
 }

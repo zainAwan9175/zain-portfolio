@@ -107,9 +107,10 @@ export interface Certification {
   title: string
   issuer: string
   date: string
-  link: string
-  /** Optional certificate image path; shown as a preview when present. */
+  /** Certificate image path; shown as a preview and opened full-size on click. */
   image?: string
+  /** Official verification page (e.g., Udemy credential URL). */
+  verifyUrl?: string
 }
 
 export interface Portfolio {
@@ -521,15 +522,15 @@ export const PORTFOLIO: Portfolio = {
       title: "AI Engineer Agentic Track: The Complete Agent & MCP Course",
       issuer: "Udemy · Ed Donner",
       date: "Mar 2026 – Apr 2026",
-      link: "https://www.udemy.com/certificate/UC-639304d8-cb6b-4db4-8e6a-372f14eb4775/",
       image: "/cert-ai-agentic.jpg",
+      verifyUrl: "https://www.udemy.com/certificate/UC-639304d8-cb6b-4db4-8e6a-372f14eb4775/",
     },
     {
       title: "Microservices with Node JS and React",
       issuer: "Udemy · Stephen Grider",
       date: "Apr 2026 – Jun 2026",
-      link: "https://www.udemy.com/certificate/UC-f011aaf4-7fa1-4d47-b0fb-7b8bb467a0db/",
       image: "/cert-microservices.jpg",
+      verifyUrl: "https://www.udemy.com/certificate/UC-f011aaf4-7fa1-4d47-b0fb-7b8bb467a0db/",
     },
   ],
 }

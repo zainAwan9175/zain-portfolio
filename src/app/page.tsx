@@ -352,14 +352,15 @@ export default function Page() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                 {portfolio.certifications.map((cert, id) => (
                   <BlurFade key={cert.title} delay={BLUR_FADE_DELAY * 14 + id * 0.05}>
-                    <a
-                      href={cert.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group block h-full rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-foreground/30 hover:shadow-lg"
-                    >
+                    <div className="group flex flex-col h-full rounded-2xl border border-border/60 bg-card/40 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-foreground/30 hover:shadow-lg">
                       {cert.image ? (
-                        <div className="overflow-hidden border-b border-border/60 bg-muted/30">
+                        <a
+                          href={cert.image}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block overflow-hidden border-b border-border/60 bg-muted/30"
+                          aria-label={`View ${cert.title} certificate`}
+                        >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
                           <img
                             src={cert.image}
@@ -367,9 +368,9 @@ export default function Page() {
                             loading="lazy"
                             className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                           />
-                        </div>
+                        </a>
                       ) : null}
-                      <div className="flex items-start gap-3 p-5">
+                      <div className="flex flex-1 items-start gap-3 p-5">
                         {!cert.image && (
                           <div className="flex items-center justify-center size-11 rounded-xl bg-foreground text-background flex-shrink-0">
                             <Award className="size-5" />
@@ -380,15 +381,37 @@ export default function Page() {
                           <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                             {cert.issuer} · {cert.date}
                           </p>
-                          <span className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium mt-2 text-foreground group-hover:underline">
-                            View credential
-                            <svg className="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                            </svg>
-                          </span>
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3">
+                            {cert.image && (
+                              <a
+                                href={cert.image}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-foreground hover:underline"
+                              >
+                                View certificate
+                                <svg className="size-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                </svg>
+                              </a>
+                            )}
+                            {cert.verifyUrl && (
+                              <a
+                                href={cert.verifyUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-muted-foreground hover:text-foreground hover:underline"
+                              >
+                                Verify on Udemy
+                                <svg className="size-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </a>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </a>
+                    </div>
                   </BlurFade>
                 ))}
               </div>
